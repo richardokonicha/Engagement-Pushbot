@@ -75,9 +75,9 @@ class Rounds(Base):
     start_time = Column(DateTime)
     memberlist = relationship("MemberList", uselist=True, backref="round")
 
-    def __init__(self, start_time, str=False):
+    def __init__(self, start_time):
         """initializes rounds and set start time"""
-        if type(start_time) is not str:
+        if type(start_time) == str:
             self.start_time = datetime.datetime.fromisoformat(start_time)
         else:
             self.start_time = start_time
@@ -92,26 +92,47 @@ class Rounds(Base):
         session.commit()
         return rounds
 
+    @classmethod
+    def create_now(cls):
+        """create round function immediately"""
+        start_time = datetime.datetime.now()
+        rounds = cls(
+            start_time
+            )
+        session.add(rounds)
+        session.commit()
+        return rounds
+
     def start(self):
         """retrieve the start time of round"""
         return self.start_time
 
     def end(self):
         """retrieve the end time of round"""
-        return self.start_time + datetime.timedelta(minutes=3)
+        return self.start_time + datetime.timedelta(minutes=20)
+
+    def drop_duration(self):
+        """returns time left time drop username period ends and returns false after it ends"""
+        delta = self.start_time + datetime.timedelta(seconds=30)
+        now = datetime.datetime.now()
+        if now > delta:
+            return False
+        else:
+            return (delta-now).seconds
 
     def join(self, user):
         """adds user to round by passing in the user object"""
         user_id = user.user_id
-        if MemberList.exist(user_id):
-            return True
-        else:
-            entry = MemberList(
-                round_id=self.id,
-                user=user
-                )
-            session.add(entry)
-            session.commit()
+        # if MemberList.exist(user_id):
+        #     self.memberlist
+        #     return True
+        # else:
+        entry = MemberList(
+            round_id=self.id,
+            user=user
+            )
+        session.add(entry)
+        session.commit()
     
     @classmethod
     def get_round(cls, id):
@@ -126,8 +147,7 @@ class Rounds(Base):
     @classmethod
     def get_lastRound(cls):
         """get last round"""
-        #TODO get last round
-        allr = session.query(cls).all()
+        return session.query(Rounds).all()[-1]
 
     def commit(self):
         """add and commit session changes to db"""
@@ -168,7 +188,7 @@ class MemberList(Base):
         return f"MemberList {self.name} round{self.round_id}"
 
 
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 
 # import pdb; pdb.set_trace()

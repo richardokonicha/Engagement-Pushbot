@@ -1,4 +1,8 @@
 .vscode/settings.json
-EPBOT/
-database/__pycache__/db.cpython-37.pyc
+EPBOT/*
+database/__pycache__/*
 database/database.db
+features/__pycache__/*
+
+__pycache__/*
+__pycache__/*
