@@ -38,9 +38,18 @@ class Users(Base):
         except TypeError:
             self.warns = 1
         finally:
+            session.commit()
             return self.warns
-        session.commit()
         
+    def engaged(self):
+        try:
+            self.pool_count +=1
+        except TypeError:
+            self.pool_count=1
+        finally:
+            session.commit()
+            return self.pool_count
+
     @classmethod
     def get(cls, userid):
         """retrive user from id"""

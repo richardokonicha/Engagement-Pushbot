@@ -15,16 +15,12 @@ def run_sched(user_id, duration):
     s.run()
 
 
-def listToString(s):
-    str1 = """"""
-    for ele in s:
-        str1 += (ele+"""
-    """)
 
 def update_round(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
     roundlast = db.Rounds.get_lastRound()
+    round_id = roundlast.id
     message_id = message.message_id + 1
     drop_duration = roundlast.drop_duration()
     # drop_duration = False
@@ -33,7 +29,7 @@ def update_round(message):
         text=f"""
 Engagement push round starts in <b>{drop_duration} seconds</b>
 If you wish to join the next round 
-Click you username to to join round before round starts
+Select your username to to join round before round starts
 """
         btn_text=f"Join round as: @{epush_user.username}"
         usern_mrkp = telebot.types.InlineKeyboardMarkup()
@@ -43,7 +39,8 @@ Click you username to to join round before round starts
             text,
             chat_id=user_id,
             message_id=message_id,
-            parse_mode="html"
+            parse_mode="html",
+            reply_markup=usern_mrkp
         )
         drop_duration = roundlast.drop_duration()
         time.sleep(2)
@@ -78,7 +75,7 @@ Click you username to to join round before round starts
         # dat_thread = get_thread("update_round_thread")
         # dat_thread.join()
     text = f"""
-Round Started
+Round Started 
     """
     bot.edit_message_text(
         text,
@@ -87,13 +84,24 @@ Round Started
         parse_mode="html"
     )
     # gets registered member list and send list to user to like
-    member_list = [i.user_id for i in roundlast.memberlist]
-    member_list_insta = [i.username for i in roundlast.memberlist]
+    def listToString(s):
+        str1 = """"""
+        for ele in s:
+            str1 += (ele+"""
+        """)
+        return str1
+
+    round_current = db.Rounds.get_round(round_id)
+    member_list = [i.user_id for i in round_current.memberlist]
+    member_list_insta = ["@"+i.username for i in round_current.memberlist]
     member_list_string = listToString(member_list_insta)
 
     if epush_user.user_id in member_list:
         text = f"""
 Please follow all Engagement instructions
+
+        """
+        list_text = f"""
 .......
 {member_list_string}
 
@@ -102,6 +110,11 @@ Please follow all Engagement instructions
             text,
             chat_id=user_id,
             message_id=message_id,
+            parse_mode="html"
+        )
+        bot.send_message(
+            chat_id=user_id,
+            text=list_text,
             parse_mode="html"
         )
     else:
@@ -129,6 +142,7 @@ def round(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
     round_start = db.Rounds.create_now()
+    
     drop_duration = round_start.drop_duration()
     def hello(name):
         print ("Hello %s!" % name)
@@ -172,21 +186,28 @@ Click you username to to join round before round starts
 @bot.callback_query_handler(func=lambda call: call.data=="join_round")
 def join_round(call):   
     user_id = call.from_user.id
+    message_id = call.message.message_id
     epush_user = db.Users.get(user_id)
     round_started = db.Rounds.get_lastRound()
     if round_started.drop_duration():
         round_started.join(epush_user)
         time_left = round_started.drop_duration()
         #TODO remove pause here
-        run_sched(user_id, 20)
-        text = f"""Congratulations you've been added to the list of the next round
-Round starts in <b>{time_left} seconds</b>
+        # run_sched(user_id, 20)
+        text = f"""You've been added to the list of the next round
+<b>Stay tuned</b>
 """
         bot.send_message(
             user_id,
             text=text,
             parse_mode="html"
         )
+        # bot.edit_message_text(
+        #     text,
+        #     chat_id=user_id,
+        #     message_id=message_id,
+        #     parse_mode="html"
+        # )
     else:
         text = f"""Oopps drop session for the last round has ended
 the next round starts in 1hour, be sure not to miss it"""

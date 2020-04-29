@@ -7,6 +7,8 @@ import threading
 
 # bot = telebot.TeleBot(TOKEN, threaded=True)
 TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
+URL = 'https://84b2f139.ngrok.io/'
+URL = ''
 bot = telebot.TeleBot(TOKEN, threaded=True)
 bot_remind = telebot.TeleBot(TOKEN, threaded=True)
 

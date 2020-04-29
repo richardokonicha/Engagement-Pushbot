@@ -20,6 +20,7 @@ You would get a reminder 30mins before round starts
         reply_markup=dashview_markup,
         parse_mode="html"
         )
+    
     # bot.edit_message_text(
     #     dashboard_text,
     #     user_id,

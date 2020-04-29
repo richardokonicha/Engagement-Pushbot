@@ -3,7 +3,6 @@
 ######## REGISTER
 from config import *
 
-
 @bot.callback_query_handler(func=lambda call: call.data=="register_member")
 def callback_hand(call):
     chat_id = call.message.chat.id
@@ -51,23 +50,45 @@ def warns(call):
     user_id = call.from_user.id
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)
-    text = """
+    warns = epush_user.warns
+    text = f"""
 A warn is a count of the number of times
 you have defaulted.
 You can default by joining a round and failing to like the last post of
 every member in that round. 
-Warn count: <b>2</b>
+Warn count: <b>{warns}</b>
     """
     bot.edit_message_text(
         text=text,
         chat_id=user_id,
         message_id=message_id,
-        parse_mode="html"
+        parse_mode="html",
+        reply_markup=dashview_markup
+
         # reply_markup=dashview_markup
     )
 
+@bot.callback_query_handler(func=lambda call: call.data=="engagement")
+def engagement(call):
+    user_id = call.from_user.id
+    message_id = call.message.json["message_id"]
+    epush_user = db.Users.get(user_id)
+    engagements = epush_user.pool_count
+    text = f"""
+Number of successful engagements
+<b>{engagements}</b>
+Next engagement in 2hours
+    """
+    bot.edit_message_text(
+        text=text,
+        chat_id=user_id,
+        message_id=message_id,
+        parse_mode="html",
+        reply_markup=dashview_markup
+    )
 
 
+    
 def input_user_account(message):
     chat_id = message.chat.id
     IG_username = message.text
