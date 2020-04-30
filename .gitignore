@@ -1,7 +1,6 @@
 .vscode/settings.json
 EPBOT/*
-database/__pycache__/*
-database/database.db
+
 features/__pycache__/*
 
 __pycache__/*

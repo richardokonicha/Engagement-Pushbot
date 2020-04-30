@@ -197,7 +197,7 @@ class MemberList(Base):
         return f"MemberList {self.name} round{self.round_id}"
 
 
-# Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
 
 
 # import pdb; pdb.set_trace()
