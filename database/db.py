@@ -26,6 +26,15 @@ class Users(Base):
     warns = Column(Integer)
     pool_count = Column(Integer)
 
+
+    def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0):
+        self.user_id = user_id
+        self.name = name
+        self.username = username
+        self.join_date = join_date
+        self.warns = warns
+        self.pool_count = pool_count
+
     def commit(self):
         """commits query object to db"""
         session.add(self)
@@ -58,6 +67,14 @@ class Users(Base):
             return user
         else:
             return None
+
+    @classmethod
+    def get_ids(cls):
+        userall = session.query(cls).all()
+        users = [i.user_id for i in userall]
+        return users
+
+
     @classmethod
     def create(cls, userid, name):
         """create new users by passing user id and name"""

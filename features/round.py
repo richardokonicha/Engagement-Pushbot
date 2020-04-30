@@ -31,7 +31,7 @@ Engagement push round starts in <b>{drop_duration} seconds</b>
 If you wish to join the next round 
 Select your username to to join round before round starts
 """
-        btn_text=f"{drop_duration} @{epush_user.username}"
+        btn_text=f"@{epush_user.username} -----{drop_duration}"
         usern_mrkp = telebot.types.InlineKeyboardMarkup()
         usern_btn = telebot.types.InlineKeyboardButton(text=btn_text, callback_data="join_round")
         usern_mrkp.add(usern_btn)
@@ -44,36 +44,7 @@ Select your username to to join round before round starts
         )
         time.sleep(2)
         drop_duration = roundlast.drop_duration()
-        
 
-
-#     if drop_duration:
-#         text=f"""
-# Engagement push round starts in <b>{drop_duration} seconds</b>
-# If you wish to join the next round 
-# Click you username to to join round before round starts
-#         """
-#         btn_text=f"Join round as: @{epush_user.username}"
-#         usern_mrkp = telebot.types.InlineKeyboardMarkup()
-#         usern_btn = telebot.types.InlineKeyboardButton(text=btn_text, callback_data="join_round")
-#         usern_mrkp.add(usern_btn)
-#         bot.edit_message_text(
-#             text,
-#             chat_id=user_id,
-#             message_id=message_id,
-#             parse_mode="html",
-#             reply_markup=usern_mrkp,
-#         )
-#     else:
-
-        # import threading
-        # def get_thread(thread_name):
-        #     for i in threading.enumerate():
-        #         if i.name == thread_name:
-        #             return i
-
-        # dat_thread = get_thread("update_round_thread")
-        # dat_thread.join()
     text = f"""
 Round Started 
     """
@@ -102,7 +73,7 @@ Please follow all Engagement instructions
 
         """
         list_text = f"""
-.......
+....... LIST OF USERS TO LIKE.........
 {member_list_string}
 
         """
@@ -139,14 +110,15 @@ You missed this round try again next time
 
 @bot.message_handler(commands=["round"])
 def round(message):
+
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
+    users = db.Users.get_ids()
+
     round_start = db.Rounds.create_now()
     
     drop_duration = round_start.drop_duration()
-    def hello(name):
-        print ("Hello %s!" % name)
-
+ 
     print("starting...")
 
     ##this creates a new thread
@@ -161,12 +133,13 @@ Click you username to to join round before round starts
     usern_mrkp = telebot.types.InlineKeyboardMarkup()
     usern_btn = telebot.types.InlineKeyboardButton(text=btn_text, callback_data="join_round")
     usern_mrkp.add(usern_btn)
-    bot.send_message(
-        user_id,
-        text=text,
-        reply_markup=usern_mrkp,
-        parse_mode="html"
-    )
+    for user_id in users:
+        bot.send_message(
+            user_id,
+            text=text,
+            reply_markup=usern_mrkp,
+            parse_mode="html"
+        )
     # update_thread(message)
     time.sleep(3)
     # update_round_thread = RepeatedTimer(5,  update_round,"update_round_thread", message)
