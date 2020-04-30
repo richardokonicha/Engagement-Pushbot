@@ -31,7 +31,7 @@ Engagement push round starts in <b>{drop_duration} seconds</b>
 If you wish to join the next round 
 Select your username to to join round before round starts
 """
-        btn_text=f"{drop_duration}: @{epush_user.username}"
+        btn_text=f"@{epush_user.username  {drop_duration}}"
         usern_mrkp = telebot.types.InlineKeyboardMarkup()
         usern_btn = telebot.types.InlineKeyboardButton(text=btn_text, callback_data="join_round")
         usern_mrkp.add(usern_btn)
@@ -42,8 +42,8 @@ Select your username to to join round before round starts
             parse_mode="html",
             reply_markup=usern_mrkp
         )
-        drop_duration = roundlast.drop_duration()
         time.sleep(2)
+        drop_duration = roundlast.drop_duration()
         
 
 
