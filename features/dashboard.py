@@ -5,6 +5,7 @@ from config import *
 ######## _dashboard_
 @bot.callback_query_handler(func=lambda call: call.data=="dashboard")
 def dashboard(call):
+    bot.answer_callback_query(call.id, text="dashboard")
     user_id = call.from_user.id
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)

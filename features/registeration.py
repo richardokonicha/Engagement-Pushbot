@@ -5,6 +5,7 @@ from config import *
 
 @bot.callback_query_handler(func=lambda call: call.data=="register_member")
 def callback_hand(call):
+    bot.answer_callback_query(call.id)
     chat_id = call.message.chat.id
     user_id = call.from_user.id
     callback_query_id=call.id
@@ -22,11 +23,26 @@ Your instagram username is set to <b>@{username}</b>.
 To change your registered username goto to menu>settings.
 You can also contact support to resolve any problem /support.
         """
-        bot.send_message(chat_id, text=text, reply_markup=dashboard_markup, parse_mode="html")
+        # bot.send_message(
+        #     chat_id, 
+        #     text=text, 
+        #     reply_markup=dashboard_markup, 
+        #     parse_mode="html"
+        #     )
+
+        bot.edit_message_text(
+            text=text,
+            chat_id=user_id,
+            message_id=message_id,
+            parse_mode="html",
+            reply_markup=dashview_markup
+
+            # reply_markup=dashview_markup
+        )
     else:
         bot.send_message(
             chat_id, 
-            text="Enter your instagram username/handle e.g @reechee",
+            text="Gib bitte deinen Instagram-Nutzernamen mit einem @ davor ein (z.B. „@user123“) :woman:🏽:computer:",
             reply_markup=force_reply
             )
         bot.register_for_reply_by_message_id(message_id+1, input_user_account)
@@ -34,6 +50,7 @@ You can also contact support to resolve any problem /support.
 ####### _change user
 @bot.callback_query_handler(func=lambda call: call.data=="input_user")
 def input_user(call):
+    bot.answer_callback_query(call.id)
     user_id = call.from_user.id
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)
@@ -47,6 +64,7 @@ def input_user(call):
 ######## warns
 @bot.callback_query_handler(func=lambda call: call.data=="warns")
 def warns(call):
+    bot.answer_callback_query(call.id)
     user_id = call.from_user.id
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)
@@ -70,14 +88,17 @@ Warn count: <b>{warns}</b>
 
 @bot.callback_query_handler(func=lambda call: call.data=="engagement")
 def engagement(call):
+    bot.answer_callback_query(call.id)
+
     user_id = call.from_user.id
     message_id = call.message.json["message_id"]
     epush_user = db.Users.get(user_id)
     engagements = epush_user.pool_count
     text = f"""
-Number of successful engagements
+Erfolgreiche Engagement-Runden: 
 <b>{engagements}</b>
-Next engagement in 2hours
+Die nächste Runde startet in (TIME UNTIL NEXT ROUND) Stunden
+
     """
     bot.edit_message_text(
         text=text,
@@ -104,8 +125,7 @@ def input_user_account(message):
         )
         epush_user.commit()
         text = f"""
-Congratulations !! You're now a member of epush engagement pool
-Your Instagram username is set to <b>@{IG_username}</b>
+Perfekt! 🥰 Willkommen in der Family. :man::woman::girl::boy:Dein Instagram-Nutzername ist mit <b>@{IG_username}</b> gespeichert :floppy_disk:. Du kannst ihn später wieder ändern, falls du das benötigst.
     """
         bot.send_message(
                 chat_id,
