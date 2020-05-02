@@ -126,7 +126,7 @@ You missed this round try again next time
 #     finally:
 #         update_round_thread.stop()
 
-@server.route("/round")
+# @server.route("/round")
 @bot.message_handler(commands=["round"])
 def round_func(message):
     user_id = message.from_user.id

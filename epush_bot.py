@@ -24,7 +24,11 @@ def webhook():
     bot.set_webhook(url + TOKEN)
     return f"Webhook set to {url}"
 
-# bot.remove_webhook()
+
+# @server.route('/round')
+# def webhook()
+
+bot.remove_webhook()
 
 
 if __name__ == "__main__":
