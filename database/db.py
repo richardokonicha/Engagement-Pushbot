@@ -133,9 +133,13 @@ class Rounds(Base):
         """retrieve the start time of round"""
         return self.start_time
 
+    def check_time(self):
+        t = self.end() - datetime.timedelta(seconds=10)
+        return t 
+
     def end(self):
         """retrieve the end time of round"""
-        return self.start_time + datetime.timedelta(minutes=20)
+        return self.start_time + datetime.timedelta(seconds=60)
 
     def drop_duration(self):
         """returns time left time drop username period ends and returns false after it ends"""

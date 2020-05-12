@@ -3,7 +3,8 @@ import telebot
 from database import db
 import datetime
 import threading
-# from sync import RepeatedTimer
+
+from apscheduler.schedulers.background import BackgroundScheduler
 
 # bot = telebot.TeleBot(TOKEN, threaded=True)
 TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
