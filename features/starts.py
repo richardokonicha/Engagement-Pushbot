@@ -10,29 +10,29 @@ def start(message):
   
     start_text = f"""
 
-Hi {name}, ich bin <b>Claire</b>. :wave:🏽🤗
+Hi {name}, ich bin <b>Claire</b>. 👋🏽🤗
 
-Ich bin deine persönliche Assistentin in Sachen Instagram-Engagement-Growth. :chart_with_upwards_trend::heart_eyes:
-Oder mit anderen Worten: ich helfe dir dabei, deine Instagram Reichweite zu erhöhen. 🤓:relaxed:
+Ich bin deine persönliche Assistentin in Sachen Instagram-Engagement-Growth. 📈😍
+Oder mit anderen Worten: ich helfe dir dabei, deine Instagram Reichweite zu erhöhen. 🤓☺️
 
-Zunächst musst du dich hierfür kostenlos registrieren, um teilnehmen zu können. :raising_hand:🏽♀
+Zunächst musst du dich hierfür kostenlos registrieren, um teilnehmen zu können.    🙋‍♀️ 🏽♀
 
-Klick dafür einfach auf den Button hier unten und gib dann deinen Instagram-Nutzernamen ein (z.B. „@user123“) :woman:🏽:computer:
+Klick dafür einfach auf den Button hier unten und gib dann deinen Instagram-Nutzernamen ein (z.B. „@user123“) 👩🏽🖥️  
 
-:memo:Die Regeln lauten wie folgt::memo:
+📝Die Regeln lauten wie folgt📝
 
-Jeden Tag finden mehrere Engagement Runden statt :bar_chart:. Ich werde dich immer fragen :question:, ob du an der kommenden Runde teilnehmen möchtest. Falls ja, kannst du dich eintragen :pencil2: und erhältst bei Start der Runde eine Liste von Accounts in dieser Runde 🧾.
+Jeden Tag finden mehrere Engagement Runden statt 📊. Ich werde dich immer fragen ❓, ob du an der kommenden Runde teilnehmen möchtest. Falls ja, kannst du dich eintragen ✏️ und erhältst bei Start der Runde eine Liste von Accounts in dieser Runde 🧾.
 
 Hier musst du von jedem Account in dieser Runde 
- ⁃ Das Bild liken :blue_heart:
- ⁃ Einen Kommentar mit mind. 3 Wörtern/Emojis schreiben :book:
+ ⁃ Das Bild liken 💙
+ ⁃ Einen Kommentar mit mind. 3 Wörtern/Emojis schreiben 📖
 
-Wenn sich zu viele Personen für eine Runde angemeldet haben, werden die User in Gruppen von maximal 35 Personen geteilt ⚔. Damit sorge ich dafür, dass du nicht 2 Stunden lang nur am Bilder liken und kommentieren bist :joy::kissing_heart:.
+Wenn sich zu viele Personen für eine Runde angemeldet haben, werden die User in Gruppen von maximal 35 Personen geteilt ⚔. Damit sorge ich dafür, dass du nicht 2 Stunden lang nur am Bilder liken und kommentieren bist 😂😘.
 
 
-Nach 30 Minuten ⏲ wird die Runde beendet. Solltest du nicht alle Accounts geliked/kommentiert haben, bekommst du eine Warnung :warning:. Bei 5 Warnungen erhältst du einen vorübergehenden Strike :x:.
+Nach 30 Minuten ⏲ wird die Runde beendet. Solltest du nicht alle Accounts geliked/kommentiert haben, bekommst du eine Warnung ⚠️. Bei 5 Warnungen erhältst du einen vorübergehenden Strike ❌.
 
 Viel Spaß und Liebe Grüße,
-Claire:heart:
+Claire❤️
     """
     bot.send_message(chat_id, text=start_text, reply_markup=register_markup, parse_mode="html")
