@@ -42,7 +42,7 @@ You can also contact support to resolve any problem /support.
     else:
         bot.send_message(
             chat_id, 
-            text="Gib bitte deinen Instagram-Nutzernamen mit einem @ davor ein (z.B. „@user123“) :woman:🏽:computer:",
+            text="Gib bitte deinen Instagram-Nutzernamen mit einem @ davor ein (z.B. „@user123“) 👩🏽🖥️",
             reply_markup=force_reply
             )
         bot.register_for_reply_by_message_id(message_id+1, input_user_account)
@@ -61,54 +61,6 @@ def input_user(call):
         )
     bot.register_for_reply_by_message_id(message_id+1, input_user_account)
 
-######## warns
-@bot.callback_query_handler(func=lambda call: call.data=="warns")
-def warns(call):
-    bot.answer_callback_query(call.id)
-    user_id = call.from_user.id
-    message_id = call.message.json['message_id']
-    epush_user = db.Users.get(user_id)
-    warns = epush_user.warns
-    text = f"""
-A warn is a count of the number of times
-you have defaulted.
-You can default by joining a round and failing to like the last post of
-every member in that round. 
-Warn count: <b>{warns}</b>
-    """
-    bot.edit_message_text(
-        text=text,
-        chat_id=user_id,
-        message_id=message_id,
-        parse_mode="html",
-        reply_markup=dashview_markup
-
-        # reply_markup=dashview_markup
-    )
-
-@bot.callback_query_handler(func=lambda call: call.data=="engagement")
-def engagement(call):
-    bot.answer_callback_query(call.id)
-
-    user_id = call.from_user.id
-    message_id = call.message.json["message_id"]
-    epush_user = db.Users.get(user_id)
-    engagements = epush_user.pool_count
-    text = f"""
-Erfolgreiche Engagement-Runden: 
-<b>{engagements}</b>
-Die nächste Runde startet in (TIME UNTIL NEXT ROUND) Stunden
-
-    """
-    bot.edit_message_text(
-        text=text,
-        chat_id=user_id,
-        message_id=message_id,
-        parse_mode="html",
-        reply_markup=dashview_markup
-    )
-
-
     
 def input_user_account(message):
     chat_id = message.chat.id
@@ -125,7 +77,7 @@ def input_user_account(message):
         )
         epush_user.commit()
         text = f"""
-Perfekt! 🥰 Willkommen in der Family. :man::woman::girl::boy:Dein Instagram-Nutzername ist mit <b>@{IG_username}</b> gespeichert :floppy_disk:. Du kannst ihn später wieder ändern, falls du das benötigst.
+Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{IG_username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
     """
         bot.send_message(
                 chat_id,
@@ -133,6 +85,7 @@ Perfekt! 🥰 Willkommen in der Family. :man::woman::girl::boy:Dein Instagram-Nu
                 parse_mode="html",
                 reply_markup=dashboard_markup
                 )
+                
     else:
         text = f"""
 Your Instagram Username has been changed to {IG_username}
