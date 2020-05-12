@@ -137,8 +137,8 @@ def round_func(message):
     print("starting...")
     ##this creates a new thread
     text=f"""
-Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> :hourglass_flowing_sand:. Wenn
-du daran teilnehmen möchtest, drücke einfach auf den Button :information_desk_person:🏽♀
+Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wenn
+du daran teilnehmen möchtest, drücke einfach auf den Button 💁:🏽♀
     """
     # rt = RepeatedTimer(5, hello, "World")
     btn_text=f"Runde mit @{epush_user.username} beitreten."

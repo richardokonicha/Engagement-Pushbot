@@ -9,7 +9,7 @@ import threading
 TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
 # TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
 URL = 'https://84b2f139.ngrok.io/'
-URL = 'https://epushbot.herokuapp.com/'
+URL = 'https://epush-bot.herokuapp.com/'
 bot = telebot.TeleBot(TOKEN, threaded=True)
 bot_remind = telebot.TeleBot(TOKEN, threaded=True)
 
@@ -19,7 +19,7 @@ bot.worker_pool
 
 markup =  telebot.types.InlineKeyboardMarkup()
 engagement_button = telebot.types.InlineKeyboardButton(text="Engagement", callback_data="engagement")
-warn_button = telebot.types.InlineKeyboardButton(text="Warnungen", callback_data="warn")
+warn_button = telebot.types.InlineKeyboardButton(text="Warnungen`", callback_data="warn")
 markup.add(engagement_button, warn_button)
 
 register_markup = telebot.types.InlineKeyboardMarkup()
