@@ -1,6 +1,6 @@
 
 import sqlalchemy
-from sqlalchemy import Column, VARCHAR, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, VARCHAR, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
@@ -25,15 +25,17 @@ class Users(Base):
     join_date = Column(DateTime)
     warns = Column(Integer)
     pool_count = Column(Integer)
+    blocked = Column(Boolean)
 
 
-    def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0):
+    def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0, blocked=False):
         self.user_id = user_id
         self.name = name
         self.username = username
         self.join_date = join_date
         self.warns = warns
         self.pool_count = pool_count
+        self.blocked = blocked
 
     def commit(self):
         """commits query object to db"""
@@ -47,8 +49,16 @@ class Users(Base):
         except TypeError:
             self.warns = 1
         finally:
+            if self.warns>=3:
+                self.blocked=True
             session.commit()
             return self.warns
+        
+    # def blocked(self):
+    #     if self.warns >= 3:
+    #         return True
+    #     else:
+    #         return False
         
     def engaged(self):
         try:
@@ -74,7 +84,6 @@ class Users(Base):
         users = [i.user_id for i in userall]
         return users
 
-
     @classmethod
     def create(cls, userid, name):
         """create new users by passing user id and name"""
@@ -93,7 +102,6 @@ class Users(Base):
 
     def __repr__(self):
         return f"User {self.name} {self.user_id}"
-
 
 class Rounds(Base):
     __tablename__="rounds"

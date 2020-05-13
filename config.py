@@ -3,18 +3,20 @@ import telebot
 from database import db
 import datetime
 import threading
+import os
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
 # bot = telebot.TeleBot(TOKEN, threaded=True)
 # TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E" # EpushBotProd
-TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
-URL = 'https://84b2f139.ngrok.io/'
-URL = 'https://epush-bot.herokuapp.com/'
-bot = telebot.TeleBot(TOKEN, threaded=True)
-bot_remind = telebot.TeleBot(TOKEN, threaded=True)
+ADMIN = int(os.getenv("ADMIN"))
+TOKEN = os.getenv("TOKEN")
+URL = os.getenv("URL")
 
-bot.worker_pool
+bot = telebot.TeleBot(TOKEN, threaded=True)
+# bot_remind = telebot.TeleBot(TOKEN, threaded=True)
+
+# bot.worker_pool
 
 ############################################################ MARKUPS
 
