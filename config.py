@@ -13,10 +13,14 @@ load_dotenv()
 # TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
 # URL = 'https://84b2f139.ngrok.io/'
 TOKEN = os.getenv("TOKEN")
+print(TOKEN)
+TOKEN="1128492285:AAHQ-zF0OG3QlJ0ElOD7DzVQQdMBYwMcbpI"
+print(TOKEN)
 # URL = os.getenv("URL")
 URL = 'https://epush-bot.herokuapp.com/'
 
 bot = telebot.TeleBot(TOKEN, threaded=True)
+print(bot)
 bot_remind = telebot.TeleBot(TOKEN, threaded=True)
 
 
