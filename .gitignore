@@ -8,3 +8,4 @@ __pycache__/*
 extra/dumps.py
 features/sched.py
 database/__pycache__/db.cpython-37.pyc
+.env
