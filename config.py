@@ -9,16 +9,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # bot = telebot.TeleBot(TOKEN, threaded=True)
+# TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
 # TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
-# URL = 'https://84b2f139.ngrok.io/'
+# URL = 'https://18480eca.ngrok.io/'
 TOKEN = os.getenv("TOKEN")
-TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
 print(TOKEN)
-URL = os.getenv("URL")
-print(URL)
+TOKEN="1128492285:AAHQ-zF0OG3QlJ0ElOD7DzVQQdMBYwMcbpI"
+print(TOKEN)
+ADMIN = os.getenv("ADMIN")
+
+# URL = os.getenv("URL")
 URL = 'https://epush-bot.herokuapp.com/'
-print(URL)
+
 bot = telebot.TeleBot(TOKEN, threaded=True)
+print(bot)
 bot_remind = telebot.TeleBot(TOKEN, threaded=True)
 
 
