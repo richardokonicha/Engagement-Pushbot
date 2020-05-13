@@ -16,8 +16,9 @@ TOKEN = os.getenv("TOKEN")
 print(TOKEN)
 URL = os.getenv("URL")
 print(URL)
+URL = 'https://epush-bot.herokuapp.com/'
+print(URL)
 bot = telebot.TeleBot(TOKEN, threaded=True)
-print(bot)
 bot_remind = telebot.TeleBot(TOKEN, threaded=True)
 
 
