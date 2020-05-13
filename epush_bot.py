@@ -20,7 +20,7 @@ def getMessage():
 @server.route('/hook')
 def webhook():
     url=URL
-    # bot.remove_webhook()
+    bot.remove_webhook()
     bot.set_webhook(url + TOKEN)
     return f"Webhook set to {url}"
 

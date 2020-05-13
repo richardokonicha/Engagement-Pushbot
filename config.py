@@ -5,6 +5,8 @@ import datetime
 import threading
 import os
 from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
+load_dotenv()
 
 # bot = telebot.TeleBot(TOKEN, threaded=True)
 # TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
