@@ -79,9 +79,25 @@ class Users(Base):
             return None
 
     @classmethod
+    def get_username(cls, username):
+        """retrive user from username"""
+        user = session.query(cls).filter_by(username=username).first()
+        if user:
+            return user
+        else:
+            return None
+
+
+    @classmethod
     def get_ids(cls):
         userall = session.query(cls).all()
         users = [i.user_id for i in userall]
+        return users
+    
+    @classmethod
+    def get_users(cls):
+        userall = session.query(cls).all()
+        users = [i for i in userall]
         return users
 
     @classmethod

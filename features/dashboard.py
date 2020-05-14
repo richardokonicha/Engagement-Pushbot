@@ -3,6 +3,32 @@ from config import *
 
 
 ######## _dashboard_
+@bot.message_handler(commands=["dashboard", "menu"])
+def menu(message):
+    user_id = message.from_user.id
+    epush_user = db.Users.get(user_id)
+    dashboard_text = f"""
+<b>Dashboard view</b>
+Hello {epush_user.username}
+Next engage is 2hours
+You would get a reminder 30mins before round starts
+
+    """
+    # bot.send_message(
+    #     user_id,
+    #     text=dashboard_text,
+    #     reply_markup=dashview_markup,
+    #     parse_mode="html"
+    #     )
+    bot.send_message(
+        user_id,
+        text=dashboard_text,
+        parse_mode="html",
+        reply_markup=dashview_markup
+    )
+
+
+
 @bot.callback_query_handler(func=lambda call: call.data=="dashboard")
 def dashboard(call):
     bot.answer_callback_query(call.id, text="dashboard")

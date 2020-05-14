@@ -32,7 +32,7 @@ def start_round(message, user_id):
     end_round = (roundlast.end()-datetime.datetime.now()).total_seconds()
     text = f"""
 Round Start
-    """
+"""
     bot.send_message(
         # text,
         # chat_id=user_id,
@@ -47,12 +47,12 @@ Round Start
         str1 = """"""
         for ele in s:
             str1 += (ele+"""
-        """)
+""")
         return str1
 
     round_current = db.Rounds.get_round(round_id)
     member_list = [i.user_id for i in round_current.memberlist]
-    member_list_insta = ["@"+i.username for i in round_current.memberlist]
+    member_list_insta = ["https://www.instagram.com/"+i.username for i in round_current.memberlist]
     member_list_string = listToString(member_list_insta)
 
     if epush_user.user_id in member_list:
@@ -138,6 +138,12 @@ du daran teilnehmen möchtest, drücke einfach auf den Button 💁:🏽♀
 
 # messages every user of the round starting in xminutes
     def start_round_thread(user_id):
+        user=db.Users.get(user_id)
+        btn_text=f"Runde mit @{user.username} beitreten."
+        usern_mrkp = telebot.types.InlineKeyboardMarkup()
+        usern_btn = telebot.types.InlineKeyboardButton(text=btn_text, callback_data="join_round")
+        usern_mrkp.add(usern_btn)
+        
         bot.send_message(
             user_id,
             text=text,
@@ -155,32 +161,42 @@ def join_round(call):
     message_id = call.message.message_id
     epush_user = db.Users.get(user_id)
     round_started = db.Rounds.get_lastRound()
-    if round_started.drop_duration():
-        round_started.join(epush_user)
-        time_left = round_started.drop_duration()
-        #TODO remove pause here
-        # run_sched(user_id, 20)
-        text = f"""You've been added to the list of the next round
-<b>Stay tuned</b>
+    if epush_user.warns>=3:
+        text = f"""Sorry you can't join round, you've been blocked
+🔴Contact support🔴
 """
         bot.send_message(
             user_id,
             text=text,
             parse_mode="html"
         )
-        # bot.edit_message_text(
-        #     text,
-        #     chat_id=user_id,
-        #     message_id=message_id,
-        #     parse_mode="html"
-        # )
     else:
-        text = f"""Oopps drop session for the last round has ended
+        if round_started.drop_duration():
+            round_started.join(epush_user)
+            time_left = round_started.drop_duration()
+            #TODO remove pause here
+            # run_sched(user_id, 20)
+            text = f"""You've been added to the list of the next round
+🥬<b>Stay tuned</b>🥬
+    """
+            bot.send_message(
+                user_id,
+                text=text,
+                parse_mode="html"
+            )
+            # bot.edit_message_text(
+            #     text,
+            #     chat_id=user_id,
+            #     message_id=message_id,
+            #     parse_mode="html"
+            # )
+        else:
+            text = f"""Oopps drop session for the last round has ended
 the next round starts in 1hour, be sure not to miss it"""
-        bot.send_message(
-            user_id,
-            text=text,
-            parse_mode="html"
-        )
+            bot.send_message(
+                user_id,
+                text=text,
+                parse_mode="html"
+            )
 
 

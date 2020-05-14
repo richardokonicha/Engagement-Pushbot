@@ -69,10 +69,11 @@ def input_user_account(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
     if epush_user == None:
+        username=IG_username.strip("@")
         epush_user = db.Users(
             user_id=user_id,
             name=name,
-            username=IG_username,
+            username=username,
             join_date=datetime.datetime.now()
         )
         epush_user.commit()
@@ -87,8 +88,11 @@ Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzerna
                 )
                 
     else:
+        username=IG_username.strip("@")
+        epush_user.username=username
+        epush_user.commit()
         text = f"""
-Your Instagram Username has been changed to {IG_username}
+Your Instagram Username has been changed to {username}
         """
         bot.send_message(
             chat_id,
