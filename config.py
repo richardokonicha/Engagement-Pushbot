@@ -13,10 +13,10 @@ load_dotenv()
 # TOKEN = "1128492285:AAHzvyFybBx-a7RYZia5hLaXmq1TPpgVd9E"
 # TOKEN = "852053528:AAHL_ryUUJ1JOhenzmI0WDiayAnxxqGFmyU"
 # URL = 'https://18480eca.ngrok.io/'
-TOKEN = os.getenv("TOKEN_t")
+TOKEN = os.getenv("TOKEN")
 ADMIN = int(os.getenv("ADMIN"))
 URL = os.getenv("URL")
-
+print(TOKEN, ADMIN, URL)
 bot = telebot.TeleBot(TOKEN, threaded=True)
 
 ############################################################ MARKUPS
