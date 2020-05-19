@@ -9,3 +9,4 @@ env
 extra/*
 *.pyc
 Epush Space.code-workspace
+.vscode/*
