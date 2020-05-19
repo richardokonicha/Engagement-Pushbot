@@ -4,7 +4,7 @@ import concurrent.futures
 
 def checklist_round(message, user_id):
     text = f"""
-In about 10 minutes the Round ends, please check if all Pics are liked and commented
+In 10 Minuten Endet die aktuelle Runde ⚠️ Bitte check nochmal, ob du die Liste abgearbeitet hast
     """
     bot.send_message(
         chat_id=user_id,
@@ -13,7 +13,7 @@ In about 10 minutes the Round ends, please check if all Pics are liked and comme
 
 def endof_round(message, user_id):
     text = f"""
-Round just ended, the next round is at 20:00
+Die Runde ist vorbei, die nächste Runde ist um 20:00 ⏱
     """
     bot.send_message(
         chat_id=user_id,
@@ -31,7 +31,7 @@ def start_round(message, user_id):
     drop_duration = roundlast.drop_duration()
     end_round = (roundlast.end()-datetime.datetime.now()).total_seconds()
     text = f"""
-Round Start
+Die Runde ist gestartet ✅
 """
     bot.send_message(
         # text,
@@ -61,7 +61,7 @@ Round Start
 Please follow all Engagement instructions
         """
         list_text = f"""
-Round started - here is a List!
+Die Runde ist gestartet - hier ist die Liste. Bitte von allen Accounts den neuesten Post liken und einen regelkonformen Kommentar hinterlassen❤️
 
 {member_list_string}
 
@@ -74,7 +74,7 @@ Round started - here is a List!
     else:
 # Missed the round
         text = f"""
-You missed this round try again next time
+Du hast die aktuelle Runde leider verpasst 😫
     """
         bot.send_message(
             chat_id=user_id,
@@ -96,7 +96,7 @@ def round_func(message):
     ##this creates a new thread
     text=f"""
 Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wenn
-du daran teilnehmen möchtest, drücke einfach auf den Button 💁:🏽♀
+du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
     """
     btn_text=f"Runde mit @{epush_user.username} beitreten."
     usern_mrkp = telebot.types.InlineKeyboardMarkup()
@@ -176,8 +176,7 @@ def join_round(call):
             time_left = round_started.drop_duration()
             #TODO remove pause here
             # run_sched(user_id, 20)
-            text = f"""You've been added to the list of the next round
-🥬<b>Stay tuned</b>🥬
+            text = f"""Du bist nun für die nächste Runde registriert♻️
     """
             bot.send_message(
                 user_id,

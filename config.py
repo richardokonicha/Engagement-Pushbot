@@ -23,7 +23,7 @@ warn_button = telebot.types.InlineKeyboardButton(text="Warnungen`", callback_dat
 markup.add(engagement_button, warn_button)
 
 register_markup = telebot.types.InlineKeyboardMarkup()
-register_button = telebot.types.InlineKeyboardButton(text="Register with Us", callback_data="register_member")
+register_button = telebot.types.InlineKeyboardButton(text="Jetzt registrieren✅", callback_data="register_member")
 register_markup.add(register_button)
 
 

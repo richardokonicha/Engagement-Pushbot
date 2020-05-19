@@ -17,11 +17,10 @@ def callback_hand(call):
     if epush_user != None:
         username = epush_user.username
         text = f"""
-Ooops <b>{name}</b> you are already registered with us.
-Your instagram username is set to <b>@{username}</b>.
-
-To change your registered username goto to menu>settings.
-You can also contact support to resolve any problem /support.
+Ups 🤷‍♀️ du hast dich schon registriert, <b>{name}</b>.
+Dein Instagram Account ist mit  <b>@{username}</b> registriert 
+Wenn du deinen Usernamen ändern willst, click einfach auf den Button hier unten 🖱
+Du kannst uns auch mit /support kontaktieren
         """
         # bot.send_message(
         #     chat_id, 

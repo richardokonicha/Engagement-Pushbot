@@ -34,11 +34,18 @@ def admin_view(message):
                 if warn_user:
                     warn_user.warning()
                     warn_user.commit()
+                    text=f"""
+<b>🔻WARNUNG {warn_user.warns}/3🔻</b>
+Leider hast du die letzte Runde nicht regelkonform abgeschlossen
+"""
+                    if warn_user.warn>=3:
+                        text=f"""
+<b>🔻WARNUNG {warn_user.warns}/3🔻</b>
+Leider hast du die letzte Runde nicht regelkonform abgeschlossen. Du wurdest nun vom Engagement ausgeschlossen. Bitte kontaktiere den Support 🆘
+"""
                     bot.send_message(
                         warn_user.user_id,
-                        text=f"""
-<b>🔻warning🔻{warn_user.warns}</b>
-Requirements incomplete  -- You get blocked after 3 warns""",
+                        text=text,
                         parse_mode="html"
                     )
                 else:
@@ -79,8 +86,10 @@ def free(message):
                     bot.send_message(
                         warn_user.user_id,
                         text=f"""
-<b>🥬Freed🥬{warn_user.warns}</b>
-Requirements incomplete  -- You get blocked after 3 warns""",
+
+❇️Freigeschaltet <b>{warn_user.warns}/3</b>❇️
+Du wurdest nun wieder freigeschaltet. Viel Spaß!
+""",
                         parse_mode="html"
                         )
                 else:
