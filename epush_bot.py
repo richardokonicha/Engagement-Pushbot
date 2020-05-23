@@ -28,7 +28,7 @@ def webhook():
 # @server.route('/round')
 # def webhook()
 
-bot.remove_webhook()
+# bot.remove_webhook()
 
 
 if __name__ == "__main__":
