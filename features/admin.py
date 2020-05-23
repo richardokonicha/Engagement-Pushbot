@@ -25,7 +25,7 @@ def warn_status():
 def admin_view(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
-    if epush_user.user_id == ADMIN:
+    if epush_user.user_id in ADMIN:
         findall = re.findall('@[\w\.]+', message.text)
         if findall:
             for item in findall:
