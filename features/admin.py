@@ -8,9 +8,12 @@ def listToString(s):
     return str1
 
 # prepares warn list for admin
-def warn_status():
+def warn_status(stype=None):
     all_epush_users = db.Users.get_users()
     list_insta = ["@"+i.username+" - "+"⚠️warns "+str(i.warns) for i in all_epush_users]
+
+    if stype=='ids':
+        list_insta = ["@"+i.username+" - "+" ID "+str(i.user_id) for i in all_epush_users]
     list_string = listToString(list_insta)
     list_text = f"""
 🥬User warn status - use command /warn user to send warn🥬
@@ -74,7 +77,7 @@ Leider hast du die letzte Runde nicht regelkonform abgeschlossen. Du wurdest nun
 def free(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
-    if epush_user.user_id == ADMIN:
+    if epush_user.user_id in ADMIN:
         findall = re.findall('@[\w\.]+', message.text)
         if findall:
             for item in findall:
@@ -111,4 +114,17 @@ Du wurdest nun wieder freigeschaltet. Viel Spaß!
         bot.send_message(
             user_id,
             text=text
+        )
+
+
+@bot.message_handler(regexp='allusers')
+def allusers(message):
+    user_id = message.from_user.id
+    epush_user = db.Users.get(user_id)
+    if epush_user.user_id in ADMIN:
+        list_text = warn_status(stype='ids')
+        bot.send_message(
+            user_id,
+            text=list_text,
+            parse_mode="html"
         )
