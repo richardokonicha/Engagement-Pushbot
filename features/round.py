@@ -118,6 +118,7 @@ def join_round(call):
     epush_user = db.Users.get(user_id)
     lang = epush_user.lang
     round_started = db.Rounds.get_lastRound()
+    print(round_started.id)
     if epush_user.warns>=3:
         text = {
             "en":
