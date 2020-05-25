@@ -173,10 +173,10 @@ Die nächste Runde beginnt in 1 Stunde. Verpassen Sie sie nicht
                 parse_mode="html"
             )
 
-
 # Trigger new round function
 def round_func():
     """this function initiates a new round and schedules all timed actions"""
+    print("setting up round .................")
     users = db.Users.get_ids()
     round_start = db.Rounds.create_now()
     drop_duration = round_start.drop_duration()
