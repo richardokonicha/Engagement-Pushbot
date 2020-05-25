@@ -220,6 +220,7 @@ def round_func():
 
 # messages every user of the round starting in xminutes
     def start_round_thread(user_id):
+        print("started drop session ....")
         user=db.Users.get(user_id)
         lang = user.lang
         btn_text = {
@@ -229,7 +230,6 @@ def round_func():
         usern_mrkp = telebot.types.InlineKeyboardMarkup()
         usern_btn = telebot.types.InlineKeyboardButton(text=btn_text[lang], callback_data="join_round")
         usern_mrkp.add(usern_btn)
-
         text = {
             "en":
             f"""
@@ -250,6 +250,7 @@ du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
             parse_mode="html"
         )
     for user_id in users:
+        print("user---id ", user_id)
         start_round_thread(user_id)
 #### ROUND CALLBACK
 
