@@ -67,6 +67,7 @@ def start_round(user_id):
     member_list = [i.user_id for i in round_current.memberlist]
     member_list_insta = ["https://www.instagram.com/"+i.username for i in round_current.memberlist]
     member_list_string = listToString(member_list_insta)
+    print("member list for this round", member_list)
 
     if epush_user.user_id in member_list:
 # sends list of registered members to all registered memebers
