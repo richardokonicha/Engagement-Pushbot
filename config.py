@@ -15,6 +15,7 @@ ADMIN = [int(i) for i in admin_env.split(' ')]
 URL = os.getenv("URL")
 print(TOKEN, ADMIN, URL)
 bot = telebot.TeleBot(TOKEN, threaded=True)
+DEBUG = (os.getenv("DEBUG") == 'True')
 
 ############################################################ MARKUPS
 

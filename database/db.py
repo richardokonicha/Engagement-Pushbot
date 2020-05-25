@@ -1,4 +1,4 @@
-
+import os
 import sqlalchemy
 from sqlalchemy import Column, VARCHAR, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
@@ -6,9 +6,19 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql import exists
 import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
+DEBUG = (os.getenv("DEBUG") == 'True')
 SQLITE = 'sqlite:///database/database.db'
-engine = create_engine(SQLITE, echo=True, connect_args={'check_same_thread': False})
+POSTGRES = "postgres://rforqrdhlqmfxx:b14d546ae3987101caf9f8b854a8112aff3289f541e8b8e2e41f1608d7f358bf@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dck7k613k9q79l"
+
+if DEBUG == True:
+    engine = create_engine(SQLITE, echo=True, connect_args={'check_same_thread': False})
+if DEBUG == False:
+    engine = create_engine(POSTGRES, echo=True)
+    
+
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()

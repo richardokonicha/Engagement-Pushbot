@@ -1,13 +1,11 @@
 import telebot
 import os
-
 from config import *
 from flask import Flask, request
 server = Flask(__name__)
 
 import importdir
 importdir.do("features", globals())
-
 
 @server.route('/'+ TOKEN, methods=['POST'])
 def getMessage():
@@ -16,7 +14,6 @@ def getMessage():
     bot.process_new_updates(update_to_json)
     return "got Message bro"
 
-
 @server.route('/hook')
 def webhook():
     url=URL
@@ -24,13 +21,15 @@ def webhook():
     bot.set_webhook(url + TOKEN)
     return f"Webhook set to {url}"
 
-
 # @server.route('/round')
 # def webhook()
 
-# bot.remove_webhook()
+# # bot.remove_webhook()
 
+if DEBUG==True:
+    bot.polling()
+else:
+    if __name__ == "__main__":
+        server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-# bot.polling()
+    # bot.polling()
