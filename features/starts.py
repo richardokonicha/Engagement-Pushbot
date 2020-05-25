@@ -1,15 +1,11 @@
 
 from config import *
 
-
 @bot.message_handler(commands=["start"])
 def start(message):
-    chat_id = message.chat.id
     user_id = message.from_user.id
     name = message.from_user.first_name
-  
     start_text = f"""
-
 Hi {name}, ich bin <b>Claire</b>. 👋🏽🤗
 
 Ich bin deine persönliche Assistentin in Sachen Instagram-Engagement-Growth. 📈😍
@@ -35,4 +31,14 @@ Nach 30 Minuten ⏲ wird die Runde beendet. Solltest du nicht alle Accounts geli
 Viel Spaß und Liebe Grüße,
 Claire❤️
     """
-    bot.send_message(chat_id, text=start_text, reply_markup=register_markup, parse_mode="html")
+    bot.send_message(
+        user_id,
+        text=start_text,
+        reply_markup=register_markup,
+        parse_mode="html"
+        )
+
+
+@bot.message_handler(commands=['lang'])
+def lang(message):
+    pass

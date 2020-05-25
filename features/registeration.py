@@ -5,32 +5,42 @@ from config import *
 
 @bot.callback_query_handler(func=lambda call: call.data=="register_member")
 def callback_hand(call):
+    """
+    this function listens for register member callback button press
+    it check it current user is already registered and calls the register_new function
+    """
     bot.answer_callback_query(call.id)
-    chat_id = call.message.chat.id
     user_id = call.from_user.id
-    callback_query_id=call.id
     name = call.from_user.first_name
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)
-    # epush_user.delete()
-    # epush_user=None
     if epush_user != None:
         username = epush_user.username
+        lang = epush_user.lang
         text = f"""
 Ups 🤷‍♀️ du hast dich schon registriert, <b>{name}</b>.
 Dein Instagram Account ist mit  <b>@{username}</b> registriert 
 Wenn du deinen Usernamen ändern willst, click einfach auf den Button hier unten 🖱
 Du kannst uns auch mit /support kontaktieren
         """
-        # bot.send_message(
-        #     chat_id, 
-        #     text=text, 
-        #     reply_markup=dashboard_markup, 
-        #     parse_mode="html"
-        #     )
+        text_register = {
+            "en":
 
+            f"""
+            hi
+            """,
+
+            "de":
+
+            f"""
+Ups 🤷‍♀️ du hast dich schon registriert, <b>{name}</b>.
+Dein Instagram Account ist mit  <b>@{username}</b> registriert 
+Wenn du deinen Usernamen ändern willst, click einfach auf den Button hier unten 🖱
+Du kannst uns auch mit /support kontaktieren
+            """
+        }
         bot.edit_message_text(
-            text=text,
+            text=text_register[lang],
             chat_id=user_id,
             message_id=message_id,
             parse_mode="html",
@@ -40,11 +50,11 @@ Du kannst uns auch mit /support kontaktieren
         )
     else:
         bot.send_message(
-            chat_id, 
+            user_id, 
             text="Gib bitte deinen Instagram-Nutzernamen mit einem @ davor ein (z.B. „@user123“) 👩🏽🖥️",
             reply_markup=force_reply
             )
-        bot.register_for_reply_by_message_id(message_id+1, input_user_account)
+        bot.register_for_reply_by_message_id(message_id+1, register_new_user)
 
 ####### _change user
 @bot.callback_query_handler(func=lambda call: call.data=="input_user")
@@ -53,22 +63,26 @@ def input_user(call):
     user_id = call.from_user.id
     message_id = call.message.json['message_id']
     epush_user = db.Users.get(user_id)
+    lang = epush_user.lang
+    text = {
+        "en": "Enter your instagram username/handle e.g @user123",
+        "de": "Geben Sie Ihren Instagram-Benutzernamen / Handle ein, z. B. @ user123"
+    }
     bot.send_message(
         user_id, 
-        text="Enter your instagram username/handle e.g @reechee",
+        text=text[lang],
         reply_markup=force_reply
         )
-    bot.register_for_reply_by_message_id(message_id+1, input_user_account)
-
+    bot.register_for_reply_by_message_id(message_id+1, register_new_user)
     
-def input_user_account(message):
+def register_new_user(message):
     chat_id = message.chat.id
-    IG_username = message.text
+    insta_username = message.text
     name = message.from_user.first_name
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
     if epush_user == None:
-        username=IG_username.strip("@")
+        username=insta_username.strip("@")
         epush_user = db.Users(
             user_id=user_id,
             name=name,
@@ -77,7 +91,7 @@ def input_user_account(message):
         )
         epush_user.commit()
         text = f"""
-Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{IG_username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
+Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{insta_username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
     """
         bot.send_message(
                 chat_id,
@@ -87,15 +101,24 @@ Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzerna
                 )
                 
     else:
-        username=IG_username.strip("@")
+        username=insta_username.strip("@")
         epush_user.username=username
         epush_user.commit()
-        text = f"""
+        lang = epush_user.lang
+        text = {
+            "en":
+            f"""
 Your Instagram Username has been changed to {username}
-        """
+            """,
+
+            "de":
+            f"""
+Dein Instagram-Benutzername wurde in {username} geändert.
+            """
+        }
         bot.send_message(
             chat_id,
-            text=text,
+            text=text[lang],
             parse_mode="html",
             reply_markup=dashboard_markup
             )
