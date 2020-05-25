@@ -8,7 +8,8 @@ def checklist_round(user_id):
     text = {
         "en":
         f"""
-The current round ends in 10 minutes. vPlease check again if you have an eye on the list
+The current round ends in 10 minutes.
+Please check again if you have an eye on the list
         """,
         "de":
         f"""
@@ -72,7 +73,7 @@ def start_round(user_id):
         list_text = {
             "en":
             f"""
-The round has started - here is the list. Please like the latest post from all accounts and leave a compliant comment❤️
+The round has started - here is the list. Please like the latest post from all accounts and leave a compliment comment❤️
 
 {member_list_string}
 
@@ -87,7 +88,7 @@ Die Runde ist gestartet - hier ist die Liste. Bitte von allen Accounts den neues
         }
         bot.send_message(
             chat_id=user_id,
-            text=list_text,
+            text=list_text[lang],
             parse_mode="html"
         )
     else:

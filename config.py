@@ -33,18 +33,38 @@ input_button = telebot.types.InlineKeyboardButton("Username", callback_data="inp
 input_markup.add(input_button)
 
 force_reply = telebot.types.ForceReply()
-
+##
 dashboard_markup = telebot.types.InlineKeyboardMarkup()
 dashboard_button = telebot.types.InlineKeyboardButton(text="Dashboard", callback_data="dashboard")
 dashboard_markup.add(dashboard_button)
 
-dashview_markup = telebot.types.InlineKeyboardMarkup()
+dashboard_markup_en = telebot.types.InlineKeyboardMarkup()
+dashboard_button_en = telebot.types.InlineKeyboardButton(text="Dashboard", callback_data="dashboard")
+dashboard_markup_en.add(dashboard_button_en)
+dashboard_markup = {
+    "en": dashboard_markup_en,
+    "de": dashboard_markup
+}
+##
+
+###
+dashview_markup_de = telebot.types.InlineKeyboardMarkup()
 u_btn = telebot.types.InlineKeyboardButton("Nutzername bearbeiten", callback_data="input_user")
 e_btn = telebot.types.InlineKeyboardButton("Engagement", callback_data="engagement")
 w_btn = telebot.types.InlineKeyboardButton("Warns", callback_data="warns")
-# d_btn = telebot.types.InlineKeyboardButton("<<< Go to Dashboard       Next round in 34sec", callback_data="dashboard")
-dashview_markup.add(u_btn)
-dashview_markup.add(e_btn, w_btn)
-# dashview_markup.add(d_btn)
+dashview_markup_de.add(u_btn)
+dashview_markup_de.add(e_btn, w_btn)
+
+dashview_markup_en = telebot.types.InlineKeyboardMarkup()
+u_btn_en = telebot.types.InlineKeyboardButton("Modify Username", callback_data="input_user")
+e_btn_en = telebot.types.InlineKeyboardButton("Engagement", callback_data="engagement")
+w_btn_en = telebot.types.InlineKeyboardButton("Warns", callback_data="warns")
+dashview_markup_en.add(u_btn_en)
+dashview_markup_en.add(e_btn_en, w_btn_en)
+dashview_markup = {
+    "en": dashview_markup_en,
+    "de": dashview_markup_de
+}
+
 
 #############################################################     FUNCT     #######################

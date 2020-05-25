@@ -44,7 +44,7 @@ Du kannst uns auch mit /support kontaktieren
             chat_id=user_id,
             message_id=message_id,
             parse_mode="html",
-            reply_markup=dashview_markup
+            reply_markup=dashview_markup[lang]
 
             # reply_markup=dashview_markup
         )
@@ -56,24 +56,6 @@ Du kannst uns auch mit /support kontaktieren
             )
         bot.register_for_reply_by_message_id(message_id+1, register_new_user)
 
-####### _change user
-@bot.callback_query_handler(func=lambda call: call.data=="input_user")
-def input_user(call):
-    bot.answer_callback_query(call.id)
-    user_id = call.from_user.id
-    message_id = call.message.json['message_id']
-    epush_user = db.Users.get(user_id)
-    lang = epush_user.lang
-    text = {
-        "en": "Enter your instagram username/handle e.g @user123",
-        "de": "Geben Sie Ihren Instagram-Benutzernamen / Handle ein, z. B. @ user123"
-    }
-    bot.send_message(
-        user_id, 
-        text=text[lang],
-        reply_markup=force_reply
-        )
-    bot.register_for_reply_by_message_id(message_id+1, register_new_user)
     
 def register_new_user(message):
     chat_id = message.chat.id
@@ -97,7 +79,7 @@ Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzerna
                 chat_id,
                 text=text,
                 parse_mode="html",
-                reply_markup=dashboard_markup
+                reply_markup=dashboard_markup[lang]
                 )
                 
     else:
@@ -120,7 +102,25 @@ Dein Instagram-Benutzername wurde in {username} geändert.
             chat_id,
             text=text[lang],
             parse_mode="html",
-            reply_markup=dashboard_markup
+            reply_markup=dashboard_markup[lang]
             )
 
 
+####### _change user
+@bot.callback_query_handler(func=lambda call: call.data=="input_user")
+def input_user(call):
+    bot.answer_callback_query(call.id)
+    user_id = call.from_user.id
+    message_id = call.message.json['message_id']
+    epush_user = db.Users.get(user_id)
+    lang = epush_user.lang
+    text = {
+        "en": "Enter your instagram username/handle e.g @user123",
+        "de": "Geben Sie Ihren Instagram-Benutzernamen / Handle ein, z. B. @ user123"
+    }
+    bot.send_message(
+        user_id, 
+        text=text[lang],
+        reply_markup=force_reply
+        )
+    bot.register_for_reply_by_message_id(message_id+1, register_new_user)

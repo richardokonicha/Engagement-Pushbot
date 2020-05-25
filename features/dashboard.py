@@ -26,15 +26,15 @@ Eine Warnung zählt, wie oft
 Sie haben standardmäßig.
 Sie können standardmäßig einer Runde beitreten und den letzten Beitrag von nicht mögen
 jedes Mitglied in dieser Runde.
-Anzahl der Warnungen: <b> {warns} </ b>
+Anzahl der Warnungen: <b> {warns} </b>
         """
     }
     bot.edit_message_text(
-        text=text,
+        text=text[lang],
         chat_id=user_id,
         message_id=message_id,
         parse_mode="html",
-        reply_markup=dashview_markup
+        reply_markup=dashview_markup[lang]
     )
 
 @bot.callback_query_handler(func=lambda call: call.data=="engagement")
@@ -66,7 +66,7 @@ Die nächste Runde startet in {next_round} Stunden
         chat_id=user_id,
         message_id=message_id,
         parse_mode="html",
-        reply_markup=dashview_markup
+        reply_markup=dashview_markup[lang]
     )
 
 @bot.callback_query_handler(func=lambda call: call.data=="dashboard")
@@ -87,18 +87,24 @@ You would get a reminder 30mins before round starts
         """,
         "de":
         f"""
-<b> Dashboard-Ansicht </ b>
+<b>Dashboard-Ansicht </b>
 Hallo {epush_user.username}
 Das nächste Engagement dauert 2 Stunden
 Sie würden 30 Minuten vor Beginn der Runde eine Erinnerung erhalten
         """
                 }
-    bot.edit_message_text(
-        text=dashboard_text[lang],
+    # bot.edit_message_text(
+    #     text=dashboard_text[lang],
+    #     chat_id=user_id,
+    #     message_id=message_id+1,
+    #     parse_mode="html",
+    #     reply_markup=dashview_markup[lang]
+    # )
+    bot.send_message(
         chat_id=user_id,
-        message_id=message_id,
+        text=dashboard_text[lang],
         parse_mode="html",
-        reply_markup=dashview_markup
+        reply_markup=dashview_markup[lang]
     )
 
 ######## _dashboard_
@@ -118,7 +124,7 @@ You would get a reminder 30mins before round starts
 
         "de":
         f"""
-<b> Dashboard-Ansicht </ b>
+<b> Dashboard-Ansicht </b>
 Hallo {epush_user.username}
 Das nächste Engagement dauert 2 Stunden
 Sie würden 30 Minuten vor Beginn der Runde eine Erinnerung erhalten
@@ -128,5 +134,5 @@ Sie würden 30 Minuten vor Beginn der Runde eine Erinnerung erhalten
         user_id,
         text=dashboard_text[lang],
         parse_mode="html",
-        reply_markup=dashview_markup
+        reply_markup=dashview_markup[lang]
     )
