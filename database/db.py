@@ -113,6 +113,17 @@ class Users(Base):
         session.commit()
         return user
 
+    @classmethod
+    def delete_user(cls, userid):
+        """retrive user from id"""
+        user = session.query(cls).filter_by(user_id=userid).first()
+        if user:
+            session.delete(user)
+            session.commit()
+            return True
+        else:
+            return None
+
     def delete(self):
         """delete user object"""
         session.delete(self)

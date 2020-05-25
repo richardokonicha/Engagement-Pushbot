@@ -43,13 +43,13 @@ Claire❤️
 def lang(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
-    lang = epush_user.lang
     text = message.text
     if re.search('en', text):
         epush_user.lang = "en"
     if re.search('de', text):
         epush_user.lang = "de"
     epush_user.commit()
+    lang = epush_user.lang
     text = {
         "en": "Language changed",
         "de": "Sprache geändert"
@@ -59,7 +59,3 @@ def lang(message):
         text=text[lang],
         parse_mode="html"
         )
-
-    
-
-    pass

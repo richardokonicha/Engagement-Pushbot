@@ -117,6 +117,51 @@ Du wurdest nun wieder freigeschaltet. Viel Spaß!
         )
 
 
+
+@bot.message_handler(regexp="delete")
+def delete_user(message):
+    user_id = message.from_user.id
+    epush_user = db.Users.get(user_id)
+    if epush_user.user_id in ADMIN:
+        findall = re.findall('@[\w\.]+', message.text)
+        if findall:
+            for item in findall:
+                itemi=item.strip("@")
+                del_user=db.Users.get_username(itemi)
+                if del_user:
+                    lang = del_user.lang
+                    del_user.delete()
+                    text = {
+                        "en": "You have been deleted to register again use command /start",
+                        "de": "Sie wurden gelöscht, um sich mit dem Befehl erneut zu registrieren /start"
+                    }
+                    bot.send_message(
+                        del_user.user_id,
+                        text=text[lang],
+                        parse_mode="html"
+                        )
+                else:
+                    text=f"🔴 {item} is not a User - Check name 🔴"
+                    bot.send_message(
+                        user_id,
+                        text=text,
+                        parse_mode="html"
+                    )
+    
+        list_text = warn_status()
+        bot.send_message(
+            user_id,
+            text=list_text,
+            parse_mode="html"
+        )
+    else:
+        text="You dont have access"
+        bot.send_message(
+            user_id,
+            text=text
+        )
+
+
 @bot.message_handler(regexp='allusers')
 def allusers(message):
     user_id = message.from_user.id

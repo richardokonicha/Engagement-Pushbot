@@ -73,13 +73,13 @@ def register_new_user(message):
         )
         epush_user.commit()
         text = f"""
-Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{insta_username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
+Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
     """
         bot.send_message(
                 chat_id,
                 text=text,
                 parse_mode="html",
-                reply_markup=dashboard_markup[lang]
+                reply_markup=dashboard_markup["de"]
                 )
                 
     else:
