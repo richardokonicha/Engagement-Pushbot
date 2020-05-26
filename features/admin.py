@@ -173,3 +173,55 @@ def allusers(message):
             text=list_text,
             parse_mode="html"
         )
+
+
+@bot.message_handler(regexp='test_round\s\d+')
+def test_round(message):
+    user_id = message.from_user.id
+    epush_user = db.Users.get(user_id)
+    lang = epush_user.lang
+    round_started = db.Rounds.get_lastRound()
+    test_num = int(message.text.split(" ")[-1])
+    if round_started.drop_duration():
+        for i in range(test_num):
+            test_user = db.Users(
+                user_id=90909000+i,
+                name=f"test_user {i}",
+                username=f"test_user{i}",
+                join_date=datetime.datetime.now()
+            )
+            round_started.join(test_user)
+        text = {
+            "en":
+            f"""
+    Test user are now registered for the next round
+            """,
+            "de":
+            f"""
+    test Du bist nun für die nächste Runde registriert♻️
+            """
+        }
+        bot.send_message(
+            user_id,
+            text=text[lang],
+            parse_mode="html"
+        )
+    else:
+        text = {
+            "en":
+            f"""
+    Oopps drop session for the last round has ended
+    the next round starts in 1hour, be sure not to miss it
+            """,
+            "de":
+            f"""
+    Die Oopps-Drop-Session für die letzte Runde ist beendet
+    Die nächste Runde beginnt in 1 Stunde. Verpassen Sie sie nicht
+            """
+        }
+        bot.send_message(
+            user_id,
+            text=text[lang],
+            parse_mode="html"
+        )
+

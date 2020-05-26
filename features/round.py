@@ -3,41 +3,47 @@ from config import *
 import concurrent.futures
 
 def checklist_round(user_id):
-    epush_user = db.Users.get(user_id)
-    lang = epush_user.lang
-    text = {
-        "en":
-        f"""
+    if re.search('90909', str(user_id)): # checks for test users and ignores them
+        pass
+    else:
+        epush_user = db.Users.get(user_id)
+        lang = epush_user.lang
+        text = {
+            "en":
+            f"""
 The current round ends in 10 minutes.
 Please check again if you have an eye on the list
-        """,
-        "de":
-        f"""
+            """,
+            "de":
+            f"""
 In 10 Minuten Endet die aktuelle Runde ⚠️ Bitte check nochmal, ob du die Liste abgearbeitet hast
-        """
-    }
-    bot.send_message(
-        chat_id=user_id,
-        text=text[lang]
-    )
+            """
+        }
+        bot.send_message(
+            chat_id=user_id,
+            text=text[lang]
+        )
 
 def endof_round(user_id):
-    epush_user = db.Users.get(user_id)
-    lang = epush_user.lang
-    text = {
-        "en":
-        f"""
+    if re.search('90909', str(user_id)):
+        pass
+    else:
+        epush_user = db.Users.get(user_id)
+        lang = epush_user.lang
+        text = {
+            "en":
+            f"""
 The round is over, the next round is at 8:00 p.m.
-        """,
-        "de":
-        f"""
+            """,
+            "de":
+            f"""
 Die Runde ist vorbei, die nächste Runde ist um 20:00 ⏱
-        """
-    }
-    bot.send_message(
-        chat_id=user_id,
-        text=text[lang]
-    )
+            """
+        }
+        bot.send_message(
+            chat_id=user_id,
+            text=text[lang]
+        )
 
 def start_round(user_id):
     epush_user = db.Users.get(user_id)
@@ -63,13 +69,28 @@ def start_round(user_id):
 """)
         return str1
 
+# splits list
+    def splitter(A):
+        B = A[0:len(A)//2]
+        C = A[len(A)//2:]
+        return (B,C)
+
     round_current = db.Rounds.get_round(round_id)
     member_list = [i.user_id for i in round_current.memberlist]
-    member_list_insta = ["https://www.instagram.com/"+i.username for i in round_current.memberlist]
+    member_object_list = round_current.memberlist
+    if len(member_object_list) > 35:
+        # this loop checks if a list is past max and splits into different groups
+        member_list_A, member_list_B = splitter(member_object_list)
+        for member in [member_list_A, member_list_B]:
+            if epush_user.user_id in [i.user_id for i in member]:
+                member_object_list = member
+
+    member_list_insta = ["https://www.instagram.com/"+i.username for i in member_object_list]
     member_list_string = listToString(member_list_insta)
     print("member list for this round", member_list)
 
     if epush_user.user_id in member_list:
+
 # sends list of registered members to all registered memebers
         list_text = {
             "en":
@@ -140,7 +161,6 @@ Es tut uns leid, dass Sie nicht teilnehmen können. Sie wurden blockiert
     else:
         if round_started.drop_duration():
             round_started.join(epush_user)
-            time_left = round_started.drop_duration()
             text = {
                 "en":
                 f"""
