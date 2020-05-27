@@ -37,18 +37,31 @@ def admin_view(message):
                 if warn_user:
                     warn_user.warning()
                     warn_user.commit()
-                    text=f"""
+                    lang = warn_user.lang
+                    text= {
+                        "en":f"""
+<b>🔻WARNING {warn_user.warns}/3🔻</b>
+Unfortunately, you did not complete the last round in accordance with the rules
+""",
+                        "de":f"""
 <b>🔻WARNUNG {warn_user.warns}/3🔻</b>
 Leider hast du die letzte Runde nicht regelkonform abgeschlossen
 """
-                    if warn_user.warn>=3:
-                        text=f"""
+                    }
+                    if warn_user.warns>=3:
+                        text= {
+                        "en":f"""
+<b>🔻WARNING {warn_user.warns}/3🔻</b>
+Unfortunately, you did not complete the last round in accordance with the rules. You have now been excluded from engagement. Please contact support 🆘
+""",
+                        "de":f"""
 <b>🔻WARNUNG {warn_user.warns}/3🔻</b>
 Leider hast du die letzte Runde nicht regelkonform abgeschlossen. Du wurdest nun vom Engagement ausgeschlossen. Bitte kontaktiere den Support 🆘
 """
+                    }
                     bot.send_message(
                         warn_user.user_id,
-                        text=text,
+                        text=text[lang],
                         parse_mode="html"
                     )
                 else:
@@ -86,13 +99,20 @@ def free(message):
                 if warn_user:
                     warn_user.warns=0
                     warn_user.commit()
-                    bot.send_message(
-                        warn_user.user_id,
-                        text=f"""
-
+                    lang=warn_user.lang
+                    text= {
+                        "en":f"""
+❇️Unblocked<b>{warn_user.warns}/3</b>❇️
+You have now been unlocked again. Have fun!
+""",
+                        "de":f"""
 ❇️Freigeschaltet <b>{warn_user.warns}/3</b>❇️
 Du wurdest nun wieder freigeschaltet. Viel Spaß!
-""",
+"""
+                    }
+                    bot.send_message(
+                        warn_user.user_id,
+                        text=text[lang],
                         parse_mode="html"
                         )
                 else:

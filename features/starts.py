@@ -1,7 +1,7 @@
 
 from config import *
 
-@bot.message_handler(commands=["start"])
+@bot.message_handler(commands=["start", "Start"])
 def start(message):
     user_id = message.from_user.id
     name = message.from_user.first_name
@@ -39,7 +39,7 @@ Claire❤️
         )
 
 
-@bot.message_handler(commands=['lang'])
+@bot.message_handler(commands=['lang', 'Lang', "LANG"])
 def lang(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)

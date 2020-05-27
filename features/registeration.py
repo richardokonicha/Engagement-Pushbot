@@ -17,17 +17,14 @@ def callback_hand(call):
     if epush_user != None:
         username = epush_user.username
         lang = epush_user.lang
-        text = f"""
-Ups 🤷‍♀️ du hast dich schon registriert, <b>{name}</b>.
-Dein Instagram Account ist mit  <b>@{username}</b> registriert 
-Wenn du deinen Usernamen ändern willst, click einfach auf den Button hier unten 🖱
-Du kannst uns auch mit /support kontaktieren
-        """
         text_register = {
             "en":
 
             f"""
-            hi
+Oops 🤷‍♀️ you've already registered, <b> {name} </b>.
+Your Instagram account is registered with <b> @ {username} </b>
+If you want to change your username, just click the button below unten
+You can also contact us with / support
             """,
 
             "de":

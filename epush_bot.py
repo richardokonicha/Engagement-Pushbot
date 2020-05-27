@@ -24,9 +24,9 @@ def webhook():
 # @server.route('/round')
 # def webhook()
 
-# # bot.remove_webhook()
 
 if DEBUG==True:
+    bot.remove_webhook()
     bot.polling()
 else:
     if __name__ == "__main__":
