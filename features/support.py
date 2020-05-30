@@ -16,8 +16,6 @@ def support_response(message, sender_id, message_id):
         reply_to_message_id=message_id
     )
 
-    pass
-
 @bot.message_handler(commands=["support"])
 def support(message):
     sender_id = message.from_user.id
