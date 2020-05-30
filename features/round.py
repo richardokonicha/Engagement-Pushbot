@@ -1,6 +1,62 @@
 
 from config import *
 import concurrent.futures
+import time
+
+def loop_teaze(user_id, start_round_message):
+    roundlast = db.Rounds.get_lastRound()
+    drop_duration = roundlast.drop_duration()
+    message_id = start_round_message.message_id
+    user=db.Users.get(user_id)
+    lang = user.lang
+    btn_text = {
+        "en":f"Round started with @{user.username}",
+        "de":f"Runde mit @{user.username} beitreten"
+    }
+    usern_mrkp = telebot.types.InlineKeyboardMarkup()
+    usern_btn = telebot.types.InlineKeyboardButton(text=btn_text[lang], callback_data="join_round")
+    usern_mrkp.add(usern_btn)
+
+    while drop_duration:
+        text = {
+            "en":
+            f"""
+The next engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
+you want to participate, just press the button 💁🏽🏽♀
+            """,
+
+            "de":
+            f"""
+Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wenn
+du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
+            """
+        }
+        bot.edit_message_text(
+            text = text[lang],
+            chat_id=user_id,
+            message_id=message_id,
+            parse_mode="html",
+            reply_markup=usern_mrkp
+        )
+        time.sleep(2)
+        
+        drop_duration = roundlast.drop_duration()
+    print("it stoped")
+    
+
+# def update_round_timer(user_id, start_round_message):
+#     message_id = start_round_message.message_id
+#     roundlast = db.Rounds.get_lastRound()
+#     drop_duration = roundlast.drop_duration()
+#     text = f"this is me {drop_duration}"
+#     bot.edit_message_text(
+#         text = text,
+#         chat_id=user_id,
+#         message_id=message_id,
+#         parse_mode="html"
+#     )
+    
+#     pass
 
 def checklist_round(user_id):
     if re.search('90909', str(user_id)): # checks for test users and ignores them
@@ -238,7 +294,6 @@ def round_func():
             round_thread.name= "endof_thread"
             round_thread.start()
 
-    scheduler.start()
 
 # messages every user of the round starting in xminutes
     def start_round_thread(user_id):
@@ -265,15 +320,40 @@ Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wen
 du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
             """
         }
-        bot.send_message(
+        start_round_message = bot.send_message(
             user_id,
             text=text[lang],
             reply_markup=usern_mrkp,
             parse_mode="html"
         )
+        loop_teaze(user_id, start_round_message)
+        # scheduler.add_job(update_round_timer, 'cron', second=1, args=[user_id, start_round_message])
+    scheduler.start()
+
+        # round_thread = threading.Timer(1,update_round_timer,args=[user_id, start_round_message])
+        # round_thread.name= "round_timer"
+        # round_thread.start()
+
+        # @scheduler.scheduled_job("cron", id="timerupdate", second="2", args=[users])
+        # def timerupdate(users):
+        #     """updates the dropsession timer"""
+        #     roundlast = db.Rounds.get_lastRound()
+        #     drop_duration = round_current.drop_duration()
+        #     text = "kjklkljkj"
+
+    # @scheduler.scheduled_job("date", id="schedsetter", run_date=timer, args=[users])
+    # def sched_start_round(users):
+    #     """this function anounces the start of a new round to every user, it does this by spliting into multiple threads"""
+    #     for user_id in users:
+            
+            
     for user_id in users:
         print("user---id ", user_id)
-        start_round_thread(user_id)
+        round_threadd = threading.Timer(1,start_round_thread,args=[user_id])
+        round_threadd.name= f"round_timer {user_id}"
+        round_threadd.start()
+
+        # start_round_thread(user_id)
 #### ROUND CALLBACK
 
 @bot.message_handler(commands=["round"])
