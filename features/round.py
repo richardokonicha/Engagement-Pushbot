@@ -141,7 +141,11 @@ def start_round(user_id):
             if epush_user.user_id in [i.user_id for i in member]:
                 member_object_list = member
 
-    member_list_insta = ["https://www.instagram.com/"+i.username for i in member_object_list]
+    
+    # member_list_insta = ["https://www.instagram.com/"+i.username for i in member_object_list]
+
+    member_list_insta = [f'<a href="https://www.instagram.com/{i.username}">@{i.username}</a>' for i in member_object_list]
+
     member_list_string = listToString(member_list_insta)
     print("member list for this round", member_list)
 
