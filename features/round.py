@@ -22,13 +22,13 @@ def loop_teaze(user_id, start_round_message):
             "en":
             f"""
 The next engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
-you want to participate, just press the button 💁🏽🏽♀
+you want to participate, just press the button 🗹
             """,
 
             "de":
             f"""
 Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wenn
-du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
+du daran teilnehmen möchtest, drücke einfach auf den Button 🗹
             """
         }
         bot.edit_message_text(
@@ -64,6 +64,7 @@ def checklist_round(user_id):
     else:
         epush_user = db.Users.get(user_id)
         lang = epush_user.lang
+        epush_user.engaged()
         text = {
             "en":
             f"""
@@ -141,16 +142,11 @@ def start_round(user_id):
             if epush_user.user_id in [i.user_id for i in member]:
                 member_object_list = member
 
-    
     # member_list_insta = ["https://www.instagram.com/"+i.username for i in member_object_list]
-
     member_list_insta = [f'<a href="https://www.instagram.com/{i.username}">@{i.username}</a>' for i in member_object_list]
-
     member_list_string = listToString(member_list_insta)
     print("member list for this round", member_list)
-
     if epush_user.user_id in member_list:
-
 # sends list of registered members to all registered memebers
         list_text = {
             "en":

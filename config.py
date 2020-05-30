@@ -52,7 +52,7 @@ dashboard_markup = {
 dashview_markup_de = telebot.types.InlineKeyboardMarkup()
 u_btn = telebot.types.InlineKeyboardButton("Nutzername bearbeiten", callback_data="input_user")
 e_btn = telebot.types.InlineKeyboardButton("Engagement", callback_data="engagement")
-w_btn = telebot.types.InlineKeyboardButton("Warns", callback_data="warns")
+w_btn = telebot.types.InlineKeyboardButton("Warnungen", callback_data="warns")
 dashview_markup_de.add(u_btn)
 dashview_markup_de.add(e_btn, w_btn)
 
