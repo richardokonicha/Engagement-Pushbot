@@ -24,7 +24,7 @@ def warn_status(stype=None):
     return list_text
 
 
-@bot.message_handler(regexp='warn')
+@bot.message_handler(commands=["warn"])
 def admin_view(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
@@ -86,7 +86,7 @@ Leider hast du die letzte Runde nicht regelkonform abgeschlossen. Du wurdest nun
         )
 
         
-@bot.message_handler(regexp="free")
+@bot.message_handler(commands=["free"])
 def free(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
@@ -138,7 +138,7 @@ Du wurdest nun wieder freigeschaltet. Viel Spaß!
 
 
 
-@bot.message_handler(regexp="delete")
+@bot.message_handler(commands=["delete"])
 def delete_user(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
