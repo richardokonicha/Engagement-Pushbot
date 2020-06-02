@@ -2,7 +2,6 @@
 EPBOT/*
 features/__pycache__/*
 __pycache__/*
-__pycache__/*
 features/sched.py
 .env
 env
@@ -10,3 +9,6 @@ extra/*
 *.pyc
 Epush Space.code-workspace
 .vscode/*
+database/*.db
+database/__pycache__/*
+
