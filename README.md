@@ -21,16 +21,63 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 Claire Push bot is a telegram bot that is design to manage an engagement group
 automatically, taking away most of the hasle of managing an engagement group.
 
-How Claire functions
-. Users interested in joining an engagement community can register with Claire and stores their information on Her database 
-. An Engagement round can be triggered using a command "/round" only by the admin or a cron/repeating process that would cause a round to be started at a defined interval.
-. Once a round is started, users who are registered as members would recieve a notification and can decide to be part of the engagement round started by clicking the join button which add their instagram username to the pool.
-. Claire generates a list of all users in the pool who indicated interest and assigns the list to each of them.
-. When a user joins a round, they are required to like the last post of every other user on the list generated for them by Claire to fulfill requirement.
-. When a user fails to fulfill the above requirement he can be warned by the admin. 
-. When a user is warned three times he is automatically blocked from joining any round until he is freed by the admin
-. Users can send messages to the admin directly from the bot Claire  /support <followed by their complaint>
-. User complaint are forwarded to the admins; admins can respond to users by replying these complaint which are then forwarded to which ever user that sent them.
-. Users do not need to interact with each other or the admin in any way, Claire manages every action
-. Admin have Ultimate power and can delete a user, block and unblock a user, warn a user, send warning messages to a user and set time for rounds to start
+
+
+#### How Users interact with Claire
+
+- Users interested in joining the community can register with Claire as members using the command `/start` and tapping on `register` button.
+
+- Users can set social media handle to be liked. ex. `https://Instagram.com/r.e.e.c.h.e.e`
+
+- Engagement Rounds are triggered at specific times; this is set by the Admin
+
+- Members are notified about the start of a Round during a Drop Session; which is a few minutes/seconds before a round starts; they have a button option to `Join` the coming round or pass.
+
+- Round starts immediately after Drop Session ends. Only Members who joined the round can participate in that Round.
+
+- Claire generates a list of all RoundParticipant's social media links i.e  `https://Instagram.com/allparticipantsprofiles`; shuffles the list and sends list to all RoundParticipants with instructions. 
+
+- RoundParticipants are required to goto the links provided, like and comment on the last social media post of every other RoundParticipant on the list distributed. 
+
+- All Members can be sent a warning by Admin if they fail to like and comment on other RoundParticipants posts or abide by any of the engagement rules set by Admin. Users are blocked from joining any round after three warnings and would need to send complaint to the Admin/support.
+
+- Users can send complains to Admins using the command `/support followed by their complaint` e.g. `/support please reactivate my account`
+
+- Users/Members do not need to interact with each other or the admin directly in any way, Claire manages every action.
+
+- Users/Members have access to a mini dashboard that displays number of warns they have and number of engagements they have been part of as well as the time of the next engagement using the command `/dashboard`, `/menu`. 
+
+
+#### How Admins interact with Claire
+
+- Admins can set specific times for engagement rounds to be triggered automatically during installation or setup this is a cron/repeating process Admins can also manually trigger a Round using the command "/round"-only an Admin can use this command.
+
+- When a user fails to fulfill the above requirement he can be warned by the Admin with the command `/warn @username`, a user is blocked from joining rounds after three warn until freed.
+
+- Admins can free users from blocks by taking their number of warns to zero with the command `/free @username`
+
+- Admins would recieve all User complaints, questions and can send responses to the users by replying on the exact message that was sent by user.
+
+- Admins can view all users and their number of warns with the command `/warn`
+
+- Admin have Ultimate power and can `/delete` a user, block and unblock a user, warn a user, send warning messages to a user and set time for rounds to start.
+
+For more comprehensive command listing see document > link
+
+
+#### How to setup Claire
+
+- Goto to the project's  [Github page](https://github.com/konichar/Engagement-Pushbot) and star this project by tapping on the star button at the top right of the page.
+
+- Clone this repository using `git clone <link>`
+
+- Create a python virtual environment and install the requirements.txt file
+
+- Create a .env file; this is where your configuration would live.
+
+- Run application from the entry point `epush_bot.py` or using `flask run`
+
+
+
+
 
