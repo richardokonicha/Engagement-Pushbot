@@ -8,11 +8,21 @@ This is a Telegram Engagement Push bot designed to organize and pair members tog
 ![GitHub deployments](https://img.shields.io/github/deployments/konichar/Engagement-Pushbot/epush-bot?color=%23aacfcf&logoColor=%23aacfcf&style=plastic&logo=appveyor)
 
 ![GitHub watchers](https://img.shields.io/github/watchers/konichar/engagmentpushbot?color=%23ffcbcb&style=social)
-![GitHub stars](https://img.shields.io/github/stars/konichar/engagmentpushbot?style=social)
-![Instagram](https://img.shields.io/badge/instagram-ffcbcb?style=social&logo=instagram)
-![Telegram](https://img.shields.io/badge/telegram-ffcbcb?style=social&logo=telegram)
-![Twitter Follow](https://img.shields.io/twitter/follow/konichar?style=social)
 
+[![GitHub stars](https://img.shields.io/github/stars/konichar/engagmentpushbot?style=social)](https://twitter.com/konichar)
+
+![Instagram](https://img.shields.io/badge/+-ffcbcb?style=social&logo=instagram)
+[![Telegram](https://img.shields.io/badge/+-ffcbcb?style=social&logo=telegram)](https://twitter.com/konichar)
+
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/konichar?style=social)](https://twitter.com/konichar)
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/konichar/Engagement-Pushbot" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star konichar/Engagement-Pushbot on GitHub">Star</a>
+jkjkjk
 
 Engagement groups define a number of social media users who meet through messenger services like Telegram to exchange comments and likes on each others posting on Instagram or Facebook. Sometimes these groups are titled as comment pods or engagement pods
 designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blog/engagement-groups/)
