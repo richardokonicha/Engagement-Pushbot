@@ -53,10 +53,12 @@ Leider hast du die letzte Runde nicht regelkonform abgeschlossen
                         "en":f"""
 <b>🔻WARNING {warn_user.warns}/3🔻</b>
 Unfortunately, you did not complete the last round in accordance with the rules. You have now been excluded from engagement. Please contact support 🆘
+Simply use "/support followed by your question"
 """,
                         "de":f"""
 <b>🔻WARNUNG {warn_user.warns}/3🔻</b>
 Leider hast du die letzte Runde nicht regelkonform abgeschlossen. Du wurdest nun vom Engagement ausgeschlossen. Bitte kontaktiere den Support 🆘
+Hierzu einfach "/support DEINE_FRAGE" nutzen
 """
                     }
                     bot.send_message(

@@ -69,3 +69,7 @@ dashview_markup = {
 
 
 #############################################################     FUNCT     #######################
+
+
+next_engagement_annoucement = "30 minutes"
+next_engagement = "2 hours"

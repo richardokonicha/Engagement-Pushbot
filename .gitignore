@@ -9,6 +9,6 @@ extra/*
 *.pyc
 Epush Space.code-workspace
 .vscode/*
-database/*.db
+database/*.db*
 database/__pycache__/*
 

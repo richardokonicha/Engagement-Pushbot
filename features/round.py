@@ -1,5 +1,16 @@
 
 from config import *
+from config import (
+    next_engagement, 
+    next_engagement_annoucement,
+    bot,
+    dashboard_markup,
+    dashview_markup,
+    db,
+    datetime,
+    telebot,
+    BackgroundScheduler
+    )
 import concurrent.futures
 import time
 
@@ -22,13 +33,13 @@ def loop_teaze(user_id, start_round_message):
             "en":
             f"""
 The next engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
-you want to participate, just press the button 🗹
+you want to participate, just press the button ✅
             """,
 
             "de":
             f"""
 Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wenn
-du daran teilnehmen möchtest, drücke einfach auf den Button 🗹
+du daran teilnehmen möchtest, drücke einfach auf den Button ✅
             """
         }
         bot.edit_message_text(
@@ -43,20 +54,6 @@ du daran teilnehmen möchtest, drücke einfach auf den Button 🗹
         drop_duration = roundlast.drop_duration()
     print("it stoped")
     
-
-# def update_round_timer(user_id, start_round_message):
-#     message_id = start_round_message.message_id
-#     roundlast = db.Rounds.get_lastRound()
-#     drop_duration = roundlast.drop_duration()
-#     text = f"this is me {drop_duration}"
-#     bot.edit_message_text(
-#         text = text,
-#         chat_id=user_id,
-#         message_id=message_id,
-#         parse_mode="html"
-#     )
-    
-#     pass
 
 def checklist_round(user_id):
     if re.search('90909', str(user_id)): # checks for test users and ignores them
@@ -90,17 +87,18 @@ def endof_round(user_id):
         text = {
             "en":
             f"""
-The round is over, the next round is at 8:00 p.m.
+The round is over, the next round is at {next_engagement}⏱
             """,
             "de":
             f"""
-Die Runde ist vorbei, die nächste Runde ist um 20:00 ⏱
+Die Runde ist vorbei, die nächste Runde ist um {next_engagement}⏱
             """
         }
         bot.send_message(
             chat_id=user_id,
             text=text[lang]
         )
+
 
 def start_round(user_id):
     epush_user = db.Users.get(user_id)
@@ -237,12 +235,12 @@ Du bist nun für die nächste Runde registriert♻️
                 "en":
                 f"""
 Oopps drop session for the last round has ended
-the next round starts in 1hour, be sure not to miss it
+the next round starts in {next_engagement}, be sure not to miss it
                 """,
                 "de":
                 f"""
 Die Oopps-Drop-Session für die letzte Runde ist beendet
-Die nächste Runde beginnt in 1 Stunde. Verpassen Sie sie nicht
+Die nächste Runde beginnt in {next_engagement}. Verpassen Sie sie nicht
                 """
             }
             bot.send_message(
@@ -295,8 +293,8 @@ def round_func():
             round_thread.start()
 
 
-# messages every user of the round starting in xminutes
     def start_round_thread(user_id):
+        """messages every user of the round starting in xminutes"""
         print("started drop session ....")
         user=db.Users.get(user_id)
         lang = user.lang
@@ -327,33 +325,14 @@ du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
             parse_mode="html"
         )
         loop_teaze(user_id, start_round_message)
-        # scheduler.add_job(update_round_timer, 'cron', second=1, args=[user_id, start_round_message])
     scheduler.start()
 
-        # round_thread = threading.Timer(1,update_round_timer,args=[user_id, start_round_message])
-        # round_thread.name= "round_timer"
-        # round_thread.start()
-
-        # @scheduler.scheduled_job("cron", id="timerupdate", second="2", args=[users])
-        # def timerupdate(users):
-        #     """updates the dropsession timer"""
-        #     roundlast = db.Rounds.get_lastRound()
-        #     drop_duration = round_current.drop_duration()
-        #     text = "kjklkljkj"
-
-    # @scheduler.scheduled_job("date", id="schedsetter", run_date=timer, args=[users])
-    # def sched_start_round(users):
-    #     """this function anounces the start of a new round to every user, it does this by spliting into multiple threads"""
-    #     for user_id in users:
-            
-            
     for user_id in users:
         print("user---id ", user_id)
         round_threadd = threading.Timer(1,start_round_thread,args=[user_id])
         round_threadd.name= f"round_timer {user_id}"
         round_threadd.start()
 
-        # start_round_thread(user_id)
 #### ROUND CALLBACK
 
 @bot.message_handler(commands=["round"])

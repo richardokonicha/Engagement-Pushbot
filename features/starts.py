@@ -11,7 +11,7 @@ Hi {name}, ich bin <b>Claire</b>. 👋🏽🤗
 Ich bin deine persönliche Assistentin in Sachen Instagram-Engagement-Growth. 📈😍
 Oder mit anderen Worten: ich helfe dir dabei, deine Instagram Reichweite zu erhöhen. 🤓☺️
 
-Zunächst musst du dich hierfür kostenlos registrieren, um teilnehmen zu können.    🙋‍♀️🏽♀
+Zunächst musst du dich hierfür kostenlos registrieren, um teilnehmen zu können ☺️.
 
 Klick dafür einfach auf den Button hier unten und gib dann deinen Instagram-Nutzernamen ein (z.B. „@user123“) 👩🏽🖥️  
 
