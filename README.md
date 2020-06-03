@@ -1,6 +1,18 @@
 # Claire Push bot
 
-###### This is an Instagram engagement push bot 
+This is a Telegram Engagement Push bot designed to organize and pair members together in an Engagement Pod to help increase engagement on each other’s content.
+
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/konichar/Engagement-Pushbot?logo=python)
+![GitHub last commit](https://img.shields.io/github/last-commit/konichar/Engagement-Pushbot?color=%23679b9b&logoColor=%23679b9b)
+![GitHub repo size](https://img.shields.io/github/repo-size/konichar/engagmentpushbot?color=%23679b9b&logo=%23663399&logoColor=%23117A65%20&style=plastic)
+![GitHub deployments](https://img.shields.io/github/deployments/konichar/Engagement-Pushbot/epush-bot?color=%23aacfcf&logoColor=%23aacfcf&style=plastic&logo=appveyor)
+
+![GitHub watchers](https://img.shields.io/github/watchers/konichar/engagmentpushbot?color=%23ffcbcb&style=social)
+![GitHub stars](https://img.shields.io/github/stars/konichar/engagmentpushbot?style=social)
+![Instagram](https://img.shields.io/badge/instagram-ffcbcb?style=social&logo=instagram)
+![Telegram](https://img.shields.io/badge/telegram-ffcbcb?style=social&logo=telegram)
+![Twitter Follow](https://img.shields.io/twitter/follow/konichar?style=social)
+
 
 Engagement groups define a number of social media users who meet through messenger services like Telegram to exchange comments and likes on each others posting on Instagram or Facebook. Sometimes these groups are titled as comment pods or engagement pods
 designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blog/engagement-groups/)
