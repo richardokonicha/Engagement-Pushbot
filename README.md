@@ -25,7 +25,7 @@ automatically, taking away most of the hasle of managing an engagement group.
 
 #### How Users interact with Claire
 
-- Users interested in joining the community can register with Claire as members using the command `/start` and tapping on `register` button.
+- Users interested in joining the engagement group can register with Claire as members using the command `/start` and tapping on `register` button.
 
 - Users can set social media handle to be liked. ex. `https://Instagram.com/r.e.e.c.h.e.e`
 
