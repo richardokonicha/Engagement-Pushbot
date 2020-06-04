@@ -1,6 +1,22 @@
 # Claire Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers)
+> This is a Telegram Engagement Push bot designed to organize and pair members together in an Engagement Pod to help increase engagement on each other’s content.
 
-![Chukwudi](./assets/chukwudi.svg#L1)
+
+<p align="center">
+  <a href="https://day8.github.io/re-frame" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/chukwudi.svg" alt="re-frame logo">
+  </a>
+</p>
+</p align="center">
+   <a href="https://www.instagram.com/r.e.e.c.h.e.e" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/r.e.e.c.h.e.e-ffcbcb?style=social&logo=instagram" alt="re-frame logo"></a>
+    <a href="https://twitter.com/konichar" target="_blank"><img src="https://img.shields.io/twitter/follow/konichar?style=social" alt="re-frame logo"></a>
+    <a href="https://github.com/konichar/Engagement-Pushbot" target="_blank"><img src="https://img.shields.io/github/stars/konichar/engagmentpushbot?style=social" alt="re-frame logo"></a>
+<p>
+
+
+
+<!-- ![Chukwudi](./assets/chukwudi.svg#L1) -->
 <!-- <img src="./assets/chukwudi.svg"> -->
 <!-- 
 ![Alt text](https://raw.github.com/konichar/engagmentpushbot/blob/master/assets/chukwudiupper.svg#L1)
@@ -18,8 +34,6 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/konichar/engagmentpushbot?color=%23ffcbcb&style=social)](https://github.com/konichar/Engagement-Pushbot)
 [![Twitter Follow](https://img.shields.io/twitter/follow/konichar?style=social)](https://twitter.com/konichar)
 [![Instagram](https://img.shields.io/badge/r.e.e.c.h.e.e-ffcbcb?style=social&logo=instagram)](https://www.instagram.com/r.e.e.c.h.e.e/) -->
-
-This is a Telegram Engagement Push bot designed to organize and pair members together in an Engagement Pod to help increase engagement on each other’s content.
 
 
 
