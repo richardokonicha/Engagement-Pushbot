@@ -1,9 +1,9 @@
 # Claire Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers)
-> This is a Telegram Engagement Push bot designed to organize and pair members together in an Engagement Pod to help increase engagement on each other’s content.
+> This is a Telegram Engagement Push bot designed to organize and manage an Engagement groups automatically to help members increase engagement on each other’s social media content; taking away most of the hasle of managing an engagement group from admins.
 
 
 <p align="center">
-  <a href="https://day8.github.io/re-frame" target="_blank" rel="noopener noreferrer">
+  <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
     <img src="./assets/chukwudi.svg" alt="re-frame logo">
   </a>
 </p>
@@ -13,7 +13,6 @@
     <a href="https://twitter.com/konichar" target="_blank"><img src="https://img.shields.io/twitter/follow/konichar?style=social" alt="re-frame logo"></a>
     <a href="https://github.com/konichar/Engagement-Pushbot" target="_blank"><img src="https://img.shields.io/github/stars/konichar/engagmentpushbot?style=social" alt="re-frame logo"></a>
 <p>
-
 
 
 <!-- ![Chukwudi](./assets/chukwudi.svg#L1) -->
@@ -40,12 +39,10 @@
 Engagement groups define a number of social media users who meet through messenger services like Telegram to exchange comments and likes on each others posting on Instagram or Facebook. Sometimes these groups are titled as comment pods or engagement pods
 designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blog/engagement-groups/)
 
-Claire Push bot is a telegram bot that is design to manage an engagement group
-automatically, taking away most of the hasle of managing an engagement group.
+---
 
 
-
-#### How Users interact with Claire
+## How Users interact with Claire
 
 - Users interested in joining the engagement group can register with Claire as members using the command `/start` and tapping on `register` button.
 
@@ -70,7 +67,7 @@ automatically, taking away most of the hasle of managing an engagement group.
 - Users/Members have access to a mini dashboard that displays number of warns they have and number of engagements they have been part of as well as the time of the next engagement using the command `/dashboard`, `/menu`. 
 
 
-#### How Admins interact with Claire
+## How Admins interact with Claire
 
 - Admins can set specific times for engagement rounds to be triggered automatically during installation or setup this is a cron/repeating process Admins can also manually trigger a Round using the command "/round"-only an Admin can use this command.
 
