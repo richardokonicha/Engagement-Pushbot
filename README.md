@@ -134,6 +134,23 @@ DEBUG=True
   ```
 
 
+## Built With
+
+* [Flask](https://flask.palletsprojects.com/) - The web framework used
+* [pytelebotapi](https://github.com/eternnoir/pyTelegramBotAPI) - Telegram bot API wrapper
+* [Heroku](https://heroku.com/) - Deployment
+
+## Authors
+
+* **Richard Okonicha** 
+
+## License
+
+This project is licensed under the MIT License and is free to use and reproduce - see the [LICENSE.md](LICENSE.md) file for details
+
+Built with love and the spirit of [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_philosophy)
+Star - Contribute - Nuture
+
 
 
 
