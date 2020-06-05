@@ -13,6 +13,8 @@ ADMIN = []
 TOKEN = os.getenv("TOKEN")
 admin_env = os.getenv("ADMIN")
 URL = os.getenv("URL")
+DEBUG = (os.getenv("DEBUG") == 'True')
+
 if admin_env == None:
     print("\u001b[31mCannot read ADMIN IDs from environment variable file. Create ADMIN variable in .env file")
 else:
@@ -22,9 +24,23 @@ if URL == None:
 if TOKEN==None:
     print("\u001b[36mCannot read TOKEN from environment variable file. Create TOKEN in .env file")
 
-print(TOKEN, ADMIN, URL)
+
 bot = telebot.TeleBot(TOKEN, threaded=True)
-DEBUG = (os.getenv("DEBUG") == 'True')
+
+next_engagement_annoucement = "30 minutes"
+next_engagement = "2 hours"
+
+# assigns sqlite for local environment when debug is true and assigns remote heroku database when debug is false
+if DEBUG == True:
+    SQLITE = 'sqlite:///database/database.db'
+    engine = create_engine(SQLITE, echo=True, connect_args={'check_same_thread': False})
+if DEBUG == False:
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    if DATABASE_URL==None:
+        print("Cannot connect to heroku database check exposed vars of postgres setup")
+    engine = create_engine(DATABASE_URL, echo=True)
+    
+
 
 ############################################################ MARKUPS
 
@@ -55,7 +71,6 @@ dashboard_markup = {
     "en": dashboard_markup_en,
     "de": dashboard_markup
 }
-##
 
 ###
 dashview_markup_de = telebot.types.InlineKeyboardMarkup()
@@ -76,9 +91,4 @@ dashview_markup = {
     "de": dashview_markup_de
 }
 
-
 #############################################################     FUNCT     #######################
-
-
-next_engagement_annoucement = "30 minutes"
-next_engagement = "2 hours"

@@ -1,28 +1,18 @@
 import os
 import sqlalchemy
+import datetime
 from sqlalchemy import Column, VARCHAR, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql import exists
-import datetime
 from dotenv import load_dotenv
+from ..config import DATABASE_URL, engine
 load_dotenv()
-
-DEBUG = (os.getenv("DEBUG") == 'True')
-SQLITE = 'sqlite:///database/database.db'
-POSTGRES = "postgres://rforqrdhlqmfxx:b14d546ae3987101caf9f8b854a8112aff3289f541e8b8e2e41f1608d7f358bf@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dck7k613k9q79l"
-
-if DEBUG == True:
-    engine = create_engine(SQLITE, echo=True, connect_args={'check_same_thread': False})
-if DEBUG == False:
-    engine = create_engine(POSTGRES, echo=True)
-    
 
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
-
 
 class Users(Base):
     """User class"""
@@ -37,7 +27,6 @@ class Users(Base):
     pool_count = Column(Integer)
     blocked = Column(Boolean)
     lang = Column(String)
-
 
     def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0, blocked=False, lang="de"):
         self.user_id = user_id
@@ -235,7 +224,6 @@ class Rounds(Base):
         """string representation of object"""
         return f"Round {self.id} {str(self.start_time)}"
 
-
 class MemberList(Base):
     """member list class"""
     __tablename__="memberlist"
@@ -266,6 +254,3 @@ class MemberList(Base):
 
 
 Base.metadata.create_all(engine)
-
-
-# import pdb; pdb.set_trace()
