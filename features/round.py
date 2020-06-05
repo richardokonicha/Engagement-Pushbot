@@ -52,7 +52,7 @@ du daran teilnehmen möchtest, drücke einfach auf den Button ✅
         time.sleep(2)
         
         drop_duration = roundlast.drop_duration()
-    print("it stoped")
+    print("it stopped")
     
 
 def checklist_round(user_id):

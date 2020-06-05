@@ -86,17 +86,53 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 > For more comprehensive command listing see document > link
 
 
-## How to setup Chukwudi
+## How to setup Chukwudi for develpment
 
 - Goto to the project's  [Github page](https://github.com/konichar/Engagement-Pushbot) and star this project by tapping on the star button at the top right of the page.
 
 - Clone this repository using `git clone <link>`
-
-- Create a python virtual environment and install the requirements.txt file
-
 - Create a .env file; this is where your configuration would live.
+```bash
+Created .env file
+
+// Created Telegram bot token from bot father
+TOKEN=821000128:EXAMple_toKENBOTtokenI0WDiayAnxxqGFmyU
+
+// url of your bot when hosted at heroku - for deployment use only
+URL='your-bot.herokuapp.com'
+
+//make list of Userids Admins, seperated by spaces
+ADMIN=123456789 3445454656
+
+// round scheduler time specification - see cronjobs
+MINUTE=*/1
+
+// Always set to True for development (locally), set to False when deployed on heroku
+DEBUG=True
+```
+
+- Create a python virtual environment and install the requirements
+
+  Install pipenv
+  ```
+  pip install pipenv
+  ```
+  Create virtual environment within project directory and activate
+  ```
+  pipenv shell
+  ```
+  Installing dependency from Pipfile.lock
+  ```
+  pipenv install
+  ```
 
 - Run application from the entry point `epush_bot.py` or using `flask run`
+
+  Run application from entry point
+  ```
+  python epush_bot.py
+  ```
+
 
 
 

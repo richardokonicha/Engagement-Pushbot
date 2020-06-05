@@ -9,10 +9,19 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
 load_dotenv()
 
+ADMIN = []
 TOKEN = os.getenv("TOKEN")
 admin_env = os.getenv("ADMIN")
-ADMIN = [int(i) for i in admin_env.split(' ')]
 URL = os.getenv("URL")
+if admin_env == None:
+    print("\u001b[31mCannot read ADMIN IDs from environment variable file. Create ADMIN variable in .env file")
+else:
+    ADMIN = [int(i) for i in admin_env.split(' ')]
+if URL == None:
+    print("\u001b[31mCannot read TOKEN from environment variable file. Create URL variable in .env file")
+if TOKEN==None:
+    print("\u001b[36mCannot read TOKEN from environment variable file. Create TOKEN in .env file")
+
 print(TOKEN, ADMIN, URL)
 bot = telebot.TeleBot(TOKEN, threaded=True)
 DEBUG = (os.getenv("DEBUG") == 'True')
