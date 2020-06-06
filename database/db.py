@@ -13,12 +13,12 @@ load_dotenv()
 DEBUG = (os.getenv("DEBUG") == 'True')
 if DEBUG == True:
     SQLITE = 'sqlite:///database/database.db'
-    engine = create_engine(SQLITE, echo=True, connect_args={'check_same_thread': False})
+    engine = create_engine(SQLITE, connect_args={'check_same_thread': False})
 if DEBUG == False:
     DATABASE_URL = os.getenv("DATABASE_URL")
     if DATABASE_URL==None:
         print("Cannot connect to heroku database check exposed vars of postgres setup")
-    engine = create_engine(DATABASE_URL, echo=True)
+    engine = create_engine(DATABASE_URL)
 
 Session = sessionmaker(bind=engine)
 session = Session()
