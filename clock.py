@@ -1,22 +1,21 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.triggers.cron import CronTrigger
 import datetime
-scheduler = BlockingScheduler()
+scheduler = BlockingScheduler(timezone='utc')
 from features.round import round_func
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-minute = os.getenv("MINUTE")
-hour=os.getenv("HOUR")
+CRON = os.getenv("CRON")
 
-# knowit = datetime.datetime.now() + datetime.timedelta(seconds=10)
-# @scheduler.scheduled_job('cron', id="run_every_2_min", minute='*/2' , args=['yougo'])
-# def hello(text):
-#     print("hello world yess", text)
+# @scheduler.scheduled_job('cron', CronTrigger.from_crontab(CRON), id="cron", )
 
-@scheduler.scheduled_job('cron', id="run_every_2_min", minute=minute, hour=hour )
+
 def triggerround():
     print("triggering round")
     round_func()
 
+scheduler.add_job(triggerround, CronTrigger.from_crontab(CRON))
+scheduler.print_jobs()
 scheduler.start()
