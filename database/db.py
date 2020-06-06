@@ -9,6 +9,11 @@ from sqlalchemy.sql import exists
 from dotenv import load_dotenv
 load_dotenv()
 
+SESSION_DURATION = os.getenv("SESSION_DURATION").split(" ")
+drop_timer = int(SESSION_DURATION[0])
+check_timer = int(SESSION_DURATION[1])
+end_timer = int(SESSION_DURATION[2])
+
 # assigns sqlite for local environment when debug is true and assigns remote heroku database when debug is false
 DEBUG = (os.getenv("DEBUG") == 'True')
 if DEBUG == True:
@@ -19,6 +24,8 @@ if DEBUG == False:
     if DATABASE_URL==None:
         print("Cannot connect to heroku database check exposed vars of postgres setup")
     engine = create_engine(DATABASE_URL)
+
+
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -180,16 +187,16 @@ class Rounds(Base):
         return self.start_time
 
     def check_time(self):
-        t = self.end() - datetime.timedelta(seconds=10)
+        t = self.end() - datetime.timedelta(minutes=check_timer)
         return t 
 
     def end(self):
         """retrieve the end time of round"""
-        return self.start_time + datetime.timedelta(seconds=60)
+        return self.start_time + datetime.timedelta(minutes=end_timer)
 
     def drop_duration(self):
         """returns time left time drop username period ends and returns false after it ends"""
-        delta = self.start_time + datetime.timedelta(seconds=30)
+        delta = self.start_time + datetime.timedelta(minutes=drop_timer)
         now = datetime.datetime.now()
         if now > delta:
             return False
