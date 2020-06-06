@@ -9,10 +9,6 @@ from sqlalchemy.sql import exists
 from dotenv import load_dotenv
 load_dotenv()
 
-Session = sessionmaker(bind=engine)
-session = Session()
-Base = declarative_base()
-
 # assigns sqlite for local environment when debug is true and assigns remote heroku database when debug is false
 DEBUG = (os.getenv("DEBUG") == 'True')
 if DEBUG == True:
@@ -23,6 +19,10 @@ if DEBUG == False:
     if DATABASE_URL==None:
         print("Cannot connect to heroku database check exposed vars of postgres setup")
     engine = create_engine(DATABASE_URL, echo=True)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+Base = declarative_base()
 
 class Users(Base):
     """User class"""
