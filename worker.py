@@ -6,7 +6,9 @@ from rq import Queue, Worker, Connection
 
 listen = ["high", "default", "low"]
 
-redis_url = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379')
+redisi = "redis://h:pf148522bd570fe8cc658f2b035320b318d584d740875f42f613ce6725077fbd0@ec2-18-200-224-51.eu-west-1.compute.amazonaws.com:16339"
+
+redis_url = os.getenv('REDIS_URL', redisi)
 
 # conn = redis.from_url(redis_url)
 
