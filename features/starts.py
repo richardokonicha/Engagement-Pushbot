@@ -9,12 +9,12 @@ def start(message):
     intro = f"""
 Hi {name}, I'm <b> Chuwkudi </b>. 
 
-I'm your personal Instagram engagement growth assistant. 📈😍
-I will help you to increase your Instagram reach. 🤓☺️
+I'm your personal Instagram engagement growth assistant.
+I will help you to increase your Instagram reach. 
 
-First you have to register for free to be able to participate ☺️.
+First you have to register for free to be able to participate .
 
-Simply click on the button below and then enter your Instagram username (e.g. "@ user123") 👩🏽🖥️
+Simply click on the button below and then enter your Instagram username (e.g. "@ user123") 
 
     
     """
@@ -41,8 +41,8 @@ Have fun and greetings,
         "en": f"""
 Hi {name}, I'm <b> Chuwkudi </b>. 
 
-I'm your personal Instagram engagement growth assistant. 📈😍
-I will help you to increase your Instagram reach. 🤓☺️
+I'm your personal Instagram engagement growth assistant.
+I will help you to increase your Instagram reach. 🤓☺
 
 First you have to register for free to be able to participate ☺️.
 
