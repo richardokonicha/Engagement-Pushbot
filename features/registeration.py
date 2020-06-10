@@ -48,7 +48,7 @@ Du kannst uns auch mit /support kontaktieren
     else:
         bot.send_message(
             user_id, 
-            text="Gib bitte deinen Instagram-Nutzernamen mit einem @ davor ein (z.B. „@user123“) 👩🏽🖥️",
+            text="Please enter your Instagram username with an @ in front (e.g. '@ user123')👩🖥️",
             reply_markup=force_reply
             )
         bot.register_for_reply_by_message_id(message_id+1, register_new_user)
@@ -70,13 +70,13 @@ def register_new_user(message):
         )
         epush_user.commit()
         text = f"""
-Perfekt! 🥰 Willkommen in der Family. 👨👩👧👦 Dein Instagram-Nutzername ist mit <b>@{username}</b> gespeichert 💾. Du kannst ihn später wieder ändern, falls du das benötigst.
+Perfect! Welcome to the family. 👨👩👧👦 Your Instagram username is saved with <b> @{username} </b> 💾. You can change it later if you need to.
     """
         bot.send_message(
                 chat_id,
                 text=text,
                 parse_mode="html",
-                reply_markup=dashboard_markup["de"]
+                reply_markup=dashboard_markup["en"]
                 )
                 
     else:

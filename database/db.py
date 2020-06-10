@@ -45,7 +45,7 @@ class Users(Base):
     blocked = Column(Boolean)
     lang = Column(String)
 
-    def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0, blocked=False, lang="de"):
+    def __init__(self, user_id, name, username=None, join_date=None, warns=0, pool_count=0, blocked=False, lang="en"):
         self.user_id = user_id
         self.name = name
         self.lang = lang
