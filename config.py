@@ -30,7 +30,8 @@ bot = telebot.TeleBot(TOKEN, threaded=True)
 cron = os.getenv("CRON").split(" ")[1]
 
 engagement_times = cron.split(",")
-engagement_time = [int(i) for i in engagement_times]
+engagement_time = [int(i)+1 for i in engagement_times]
+
 
 nextround = nextround_timer(engagement_time)
 next_engagement_annoucement = "10 minutes"
