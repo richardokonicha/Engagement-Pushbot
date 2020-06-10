@@ -157,8 +157,8 @@ DEBUG=True
 
 This project is licensed under the MIT License and is free to use and reproduce - see the [LICENSE.md](LICENSE.md) file for details
 
-Built with love and a spirit of [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_philosophy) >>>
-Star - Contribute - Nuture
+Built with love and the spirit of [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_philosophy) >>>
+~~Star this repo *~~
 
 
 
