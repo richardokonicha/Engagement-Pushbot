@@ -9,7 +9,8 @@ from config import (
     db,
     datetime,
     telebot,
-    BackgroundScheduler
+    BackgroundScheduler,
+    nextround_timer
     )
 import concurrent.futures
 import time
@@ -82,6 +83,10 @@ def endof_round(user_id):
     if re.search('90909', str(user_id)):
         pass
     else:
+        
+        nextround = nextround_timer(engagement_time)
+        next_engagement = f"{nextround['clock']} {nextround['in']}"
+
         epush_user = db.Users.get(user_id)
         lang = epush_user.lang
         text = {
@@ -193,6 +198,10 @@ def join_round(call):
     epush_user = db.Users.get(user_id)
     lang = epush_user.lang
     round_started = db.Rounds.get_lastRound()
+
+    
+    nextround = nextround_timer(engagement_time)
+    next_engagement = f"{nextround['clock']} {nextround['in']}"
     print(round_started.id)
     if epush_user.warns>=3:
         text = {

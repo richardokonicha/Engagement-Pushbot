@@ -27,8 +27,8 @@ if TOKEN==None:
 
 bot = telebot.TeleBot(TOKEN, threaded=True)
 
-cron = os.getenv("CRON").split(" ")[1]
 
+cron = os.getenv("CRON").split(" ")[1]
 engagement_times = cron.split(",")
 engagement_time = [int(i)+1 for i in engagement_times]
 
