@@ -1,4 +1,4 @@
-# Chukwudi Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers)
+# Chukwudi Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fkonichar%2FEngagement-Pushbot&via=konichar&text=Checkout%20this%20cool%20Instagram%20Engagement%20bot%20for%20Telegram.%20&hashtags=telegram%2Cinstagrambot%2Cengagement)
 > This is a Telegram Engagement Push bot designed to organize and manage an Engagement groups automatically to help members increase engagement on each other’s social media content; taking away most of the hasle of managing an engagement group from admins.
 
 
@@ -95,17 +95,20 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 ```bash
 Created .env file
 
+//make list of Userids Admins, seperated by spaces
+ADMIN=123456789 3445454656
+
+// cron job for automatic round trigger at set time
+CRON=50 15,17,19 * * *
+
 // Created Telegram bot token from bot father
 TOKEN=821000128:EXAMple_toKENBOTtokenI0WDiayAnxxqGFmyU
 
 // url of your bot when hosted at heroku - for deployment use only
 URL='your-bot.herokuapp.com'
 
-//make list of Userids Admins, seperated by spaces
-ADMIN=123456789 3445454656
-
-// round scheduler time specification - see cronjobs
-MINUTE=*/1
+// Session duration <dropsession duration = 10minutes> <checklist notification=10minutes before endofround > <round duration = 30minutes>
+SESSION_DURATION=10 10 30
 
 // Always set to True for development (locally), set to False when deployed on heroku
 DEBUG=True
@@ -126,7 +129,7 @@ DEBUG=True
   pipenv install
   ```
 
-- Run application from the entry point `epush_bot.py` or using `flask run`
+- Run application from the entry point `epush_bot.py`
 
   Run application from entry point
   ```
