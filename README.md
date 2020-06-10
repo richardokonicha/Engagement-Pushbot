@@ -1,10 +1,10 @@
-# claire Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers)
+# Chukwudi Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers)
 > This is a Telegram Engagement Push bot designed to organize and manage an Engagement groups automatically to help members increase engagement on each other’s social media content; taking away most of the hasle of managing an engagement group from admins.
 
 
 <p align="center">
   <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
-    <img src="./assets/claire.svg" alt="re-frame logo">
+    <img src="./assets/chukwudi.svg" alt="re-frame logo">
   </a>
 </p>
 </p align="center">
@@ -15,11 +15,11 @@
 <p>
 
 
-<!-- ![claire](./assets/claire.svg#L1) -->
-<!-- <img src="./assets/claire.svg"> -->
+<!-- ![Chukwudi](./assets/chukwudi.svg#L1) -->
+<!-- <img src="./assets/chukwudi.svg"> -->
 <!-- 
-![Alt text](https://raw.github.com/konichar/engagmentpushbot/blob/master/assets/claireupper.svg#L1)
-<img src="https://raw.github.com/konichar/engagmentpushbot/blob/master/assets/claireupper.svg#L1"> -->
+![Alt text](https://raw.github.com/konichar/engagmentpushbot/blob/master/assets/chukwudiupper.svg#L1)
+<img src="https://raw.github.com/konichar/engagmentpushbot/blob/master/assets/chukwudiupper.svg#L1"> -->
 
 
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/konichar/Engagement-Pushbot?logo=python)
@@ -40,13 +40,13 @@ Engagement groups define a number of social media users who meet through messeng
 designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blog/engagement-groups/)
 
 ---
->- [How Users interact with claire](#How-Users-interact-with-claire)
->- [How Admins interact with claire](#How-admins-interact-with-claire)
->- [How to setup claire](#How-to-Setup-claire)
+>- [How Users interact with Chukwudi](#How-Users-interact-with-Chukwudi)
+>- [How Admins interact with Chukwudi](#How-admins-interact-with-Chukwudi)
+>- [How to setup Chukwudi](#How-to-Setup-Chukwudi)
 
-## How Users interact with claire
+## How Users interact with Chukwudi
 
-- Users interested in joining the engagement group can register with claire as members using the command `/start` and tapping on `register` button.
+- Users interested in joining the engagement group can register with Chukwudi as members using the command `/start` and tapping on `register` button.
 
 - Users can set social media handle to be liked. ex. `https://Instagram.com/r.e.e.c.h.e.e`
 
@@ -56,7 +56,7 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 
 - Round starts immediately after Drop Session ends. Only Members who joined the round can participate in that Round.
 
-- claire generates a list of all RoundParticipant's social media links i.e  `https://Instagram.com/allparticipantsprofiles`; shuffles the list and sends list to all RoundParticipants with instructions. 
+- Chukwudi generates a list of all RoundParticipant's social media links i.e  `https://Instagram.com/allparticipantsprofiles`; shuffles the list and sends list to all RoundParticipants with instructions. 
 
 - RoundParticipants are required to goto the links provided, like and comment on the last social media post of every other RoundParticipant on the list distributed. 
 
@@ -64,12 +64,12 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 
 - Users can send complains to Admins using the command `/support followed by their complaint` e.g. `/support please reactivate my account`
 
-- Users/Members do not need to interact with each other or the admin directly in any way, claire manages every action.
+- Users/Members do not need to interact with each other or the admin directly in any way, Chukwudi manages every action.
 
 - Users/Members have access to a mini dashboard that displays number of warns they have and number of engagements they have been part of as well as the time of the next engagement using the command `/dashboard`, `/menu`. 
 
 
-## How Admins interact with claire
+## How Admins interact with Chukwudi
 
 - Admins can set specific times for engagement rounds to be triggered automatically during installation or setup this is a cron/repeating process Admins can also manually trigger a Round using the command "/round"-only an Admin can use this command.
 
@@ -86,7 +86,7 @@ designed to manage  groups. see [Engagement Groups](https://influencerdb.com/blo
 > For more comprehensive command listing see document > link
 
 
-## How to setup claire for develpment
+## How to setup Chukwudi for develpment
 
 - Goto to the project's  [Github page](https://github.com/konichar/Engagement-Pushbot) and star this project by tapping on the star button at the top right of the page.
 
