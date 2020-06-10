@@ -3,8 +3,14 @@
 
 
 <p align="center">
+<a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
+  </a>
   <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
-    <img src="./assets/chukwudi.svg" alt="re-frame logo">
+    <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
+  </a>
+  <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
   </a>
 </p>
 </p align="center">
