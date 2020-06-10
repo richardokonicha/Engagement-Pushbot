@@ -1,5 +1,5 @@
 # Chukwudi Push bot [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fkonichar%2FEngagement-Pushbot&via=konichar&text=Checkout%20this%20cool%20Instagram%20Engagement%20bot%20for%20Telegram.%20&hashtags=telegram%2Cinstagrambot%2Cengagement)
-> This is a Telegram Engagement Push bot designed to organize and manage an Engagement groups automatically to help members increase engagement on each other’s social media content; taking away most of the hasle of managing an engagement group from admins.
+> This is a Telegram Engagement Push bot designed to organize and manage an Engagement groups automatically to help members increase engagement on each other’s social media content; taking away most of the hasle of managing an engagement group from admins. See Bot [@chukwudi_pushbot](https://telegram.me/chukwudi_pushbot)
 
 
 <p align="center">
