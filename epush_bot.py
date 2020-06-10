@@ -21,6 +21,12 @@ def webhook():
     bot.set_webhook(url + TOKEN)
     return f"Webhook set to {url}"
 
+@server.route('/')
+def thanks():
+    url=URL
+    return f"Thanks you've reach chukwudi bot {url}"
+
+
 if DEBUG==True:
     bot.remove_webhook()
     bot.polling()
