@@ -7,6 +7,7 @@ import os
 import re
 from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
+from util import nextround_timer
 load_dotenv()
 
 ADMIN = []
@@ -26,8 +27,14 @@ if TOKEN==None:
 
 bot = telebot.TeleBot(TOKEN, threaded=True)
 
-next_engagement_annoucement = "30 minutes"
-next_engagement = "2 hours"
+cron = os.getenv("CRON").split(" ")[1]
+
+engagement_times = cron.split(",")
+engagement_time = [int(i) for i in engagement_times]
+
+nextround = nextround_timer(engagement_time)
+next_engagement_annoucement = "10 minutes"
+next_engagement = f"{nextround['clock']} {nextround['in']}"
 
 ############################################################ MARKUPS
 
