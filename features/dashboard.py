@@ -6,7 +6,9 @@ from config import (
     next_engagement, 
     dashboard_markup, 
     dashview_markup, 
-    db
+    db,
+    nextround_timer,
+    engagement_time
     )
 
 
@@ -19,6 +21,7 @@ def warns(call):
     epush_user = db.Users.get(user_id)
     warns = epush_user.warns
     lang = epush_user.lang
+    
     text = {
         "en":
         f"""
@@ -57,6 +60,10 @@ def engagement(call):
     epush_user = db.Users.get(user_id)
     engagements = epush_user.pool_count
     lang = epush_user.lang
+
+    nextround = nextround_timer(engagement_time)
+    next_engagement = f"{nextround['clock']} {nextround['in']}"
+
     text = {
         "en":
         f"""
@@ -88,6 +95,9 @@ def dashboard(call):
     epush_user = db.Users.get(user_id)
     lang = epush_user.lang
     
+    
+    nextround = nextround_timer(engagement_time)
+    next_engagement = f"{nextround['clock']} {nextround['in']}"
     dashboard_text = {
         "en":
         f"""
@@ -118,6 +128,10 @@ def menu(message):
     user_id = message.from_user.id
     epush_user = db.Users.get(user_id)
     lang = epush_user.lang
+
+    
+    nextround = nextround_timer(engagement_time)
+    next_engagement = f"{nextround['clock']} {nextround['in']}"
     dashboard_text = {
         "en":
         f"""
