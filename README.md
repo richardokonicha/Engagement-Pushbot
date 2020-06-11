@@ -33,7 +33,7 @@
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/konichar/Engagement-Pushbot?logo=python)
 ![GitHub last commit](https://img.shields.io/github/last-commit/konichar/Engagement-Pushbot?color=%23679b9b&logoColor=%23679b9b)
 ![GitHub repo size](https://img.shields.io/github/repo-size/konichar/engagmentpushbot?color=%23679b9b&logo=%23663399&logoColor=%23117A65%20&style=plastic)
-![GitHub deployments](https://img.shields.io/github/deployments/konichar/Engagement-Pushbot/epush-bot?color=%23aacfcf&logoColor=%23aacfcf&style=plastic&logo=appveyor)
+<!-- ![GitHub deployments](https://img.shields.io/github/deployments/konichar/Engagement-Pushbot/epush-bot?color=%23aacfcf&logoColor=%23aacfcf&style=plastic&logo=appveyor) -->
 
 ---
 <!-- 
