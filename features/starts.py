@@ -1,5 +1,6 @@
 
 from config import *
+import time
 
 @bot.message_handler(commands=["start", "Start"])
 def start(message):
@@ -102,7 +103,7 @@ Chukwudi❤️
         caption=intro,
         parse_mode="html"
         )
-
+    time.sleep(2)
     bot.send_message(
         user_id,
         text=rules,
