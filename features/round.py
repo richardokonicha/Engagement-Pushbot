@@ -16,6 +16,7 @@ from config import (
 import concurrent.futures
 import time
 
+
 def loop_teaze(user_id, start_round_message):
     roundlast = db.Rounds.get_lastRound()
     drop_duration = roundlast.drop_duration()
@@ -23,7 +24,7 @@ def loop_teaze(user_id, start_round_message):
     user=db.Users.get(user_id)
     lang = user.lang
     btn_text = {
-        "en":f"Round started with @{user.username}",
+        "en":f"Join round @{user.username}",
         "de":f"Runde mit @{user.username} beitreten"
     }
     usern_mrkp = telebot.types.InlineKeyboardMarkup()
@@ -35,7 +36,7 @@ def loop_teaze(user_id, start_round_message):
             "en":
             f"""
 The next engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
-you want to participate, just press the button ✅
+you want to participate, just press the button 
             """,
 
             "de":
@@ -61,13 +62,18 @@ def checklist_round(user_id):
     if re.search('90909', str(user_id)): # checks for test users and ignores them
         pass
     else:
+        roundlast = db.Rounds.get_lastRound()
+        endof_round = roundlast.end()
+        now = datetime.datetime.now()
+        remain = endof_round-now
+
         epush_user = db.Users.get(user_id)
         lang = epush_user.lang
         epush_user.engaged()
         text = {
             "en":
             f"""
-The current round ends in 10 minutes.
+The current round ends in {remain}.
 Please check again if you have an eye on the list
             """,
             "de":
@@ -75,10 +81,12 @@ Please check again if you have an eye on the list
 In 10 Minuten Endet die aktuelle Runde ⚠️ Bitte check nochmal, ob du die Liste abgearbeitet hast
             """
         }
-        bot.send_message(
+        check_round_message = bot.send_message(
             chat_id=user_id,
             text=text[lang]
         )
+        # loop_teaze(user_id, check_round_message)
+
 
 def endof_round(user_id):
     if re.search('90909', str(user_id)):
@@ -118,10 +126,10 @@ def start_round(user_id):
         "en": """The round has started ✅""",
         "de": """Die Runde ist gestartet ✅"""
     }
-    bot.send_message(
-        chat_id=user_id,
-        text=text[lang]
-    )
+    # bot.send_message(
+    #     chat_id=user_id,
+    #     text=text[lang]
+    # )
     # gets registered member list and send list to user to like
     def listToString(s):
         str1 = """"""
@@ -155,13 +163,15 @@ def start_round(user_id):
         list_text = {
             "en":
             f"""
-The round has started - here is the list. Please like the latest post from all accounts and leave a compliment comment❤️
+
+<pre>The round has started - here is the list. Please like the latest post from all accounts and leave a compliment comment❤️</pre>
 
 {member_list_string}
 
             """,
             "de":
             f"""
+
 Die Runde ist gestartet - hier ist die Liste. Bitte von allen Accounts den neuesten Post liken und einen regelkonformen Kommentar hinterlassen❤️
 
 {member_list_string}
@@ -228,7 +238,7 @@ Es tut uns leid, dass Sie nicht teilnehmen können. Sie wurden blockiert
             text = {
                 "en":
                 f"""
-You are now registered for the next round
+You are now registered for the next round -- <b>standby</b>♻️
                 """,
                 "de":
                 f"""
@@ -309,7 +319,7 @@ def round_func():
         user=db.Users.get(user_id)
         lang = user.lang
         btn_text = {
-            "en":f"Round started with @{user.username}",
+            "en":f"Join round @{user.username}",
             "de":f"Runde mit @{user.username} beitreten"
         }
         usern_mrkp = telebot.types.InlineKeyboardMarkup()
@@ -318,7 +328,7 @@ def round_func():
         text = {
             "en":
             f"""
-The next engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
+The Engagement round starts in <b> {drop_duration} seconds </b> ⏳. If
 you want to participate, just press the button 💁🏽🏽♀
             """,
 
@@ -328,6 +338,20 @@ Die nächste Engagement-Runde startet in <b>{drop_duration} seconds</b> ⏳. Wen
 du daran teilnehmen möchtest, drücke einfach auf den Button 💁🏽🏽♀
             """
         }
+        
+        # bot.send_photo(
+        #     user_id, 
+        #     "https://res.cloudinary.com/konichar/image/upload/v1591791368/bxyknpdz2wuw8ewqevpg.png",
+        #     caption=intro,
+        #     parse_mode="html"
+        #     )
+        
+        bot.send_sticker(
+            user_id,
+            data="CAACAgQAAxkBAAITQV7iAsys8gEyMHMnjK-TV-2FDBzPAAIBAAOtV8w-NXDaJwofElEaBA"
+            # reply_markup=usern_mrkp
+        )
+
         start_round_message = bot.send_message(
             user_id,
             text=text[lang],
