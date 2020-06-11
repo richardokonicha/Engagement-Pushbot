@@ -4,22 +4,14 @@
 
 <p align="center">
 <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
-    <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
+    <img src="https://media.giphy.com/media/UX4jlqJHg2qXAzqARz/giphy.gif" width="150" alt="re-frame logo">
   </a>
   <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
     <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
   </a>
   <a href="https://github.com/konichar" target="_blank" rel="noopener noreferrer">
-    <img src="./assets/chukwudi.svg" width="300" alt="re-frame logo">
+    <img src="https://media.giphy.com/media/gdfoIF3QFMGWsj18ri/giphy.gif" width="150" alt="re-frame logo">
   </a>
-</p>
-
-<div style="width:100%;height:0;padding-bottom:200%;position:relative;">
-<iframe src="https://giphy.com/embed/UX4jlqJHg2qXAzqARz" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed"      allowFullScreen>
-  </iframe>
-</div>
-<p>
-  <a href="https://giphy.com/gifs/UX4jlqJHg2qXAzqARz">via GIPHY</a>
 </p>
 
 
